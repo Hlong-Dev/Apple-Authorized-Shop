@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title th:text="${title} ?: 'Product'">Product</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<section layout:fragment="content" class="container mt-5">
+    <h1>Products List</h1>
+    <div>
+        <a th:href="@{/products/add}" class="btn btn-primary mb-3">Add New Product</a>
+    </div>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Category Name</th>
+            <th>Image</th>
+            <th>Actions</th>
+            <th>Add To Cart</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${products}">
+            <td th:text="${product.id}"></td>
+            <td th:text="${product.nameProduct}"></td>
+            <td th:text="${product.price}"></td>
+            <td th:text="${product.description}"></td>
+            <td th:text="${product.category.nameProductCategory}"></td>
+            <td>
+                <img th:src="@{|${product.imagePath}|}" alt="Product Image" class="img-thumbnail" style="width: 100px; height: 100px;">            </td>
+            <td>
+                <a th:href="@{/products/edit/{id}(id=${product.id})}" class="btn btn-success btn-sm">Edit</a>
+                <a th:href="@{/products/delete/{id}(id=${product.id})}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+            <td>
+                <form th:action="@{/cart/add}" method="post">
+                    <input type="number" name="quantity" min="1" value="1" class="form-control d-inline-block" style="width: 70px;">
+                    <input type="hidden" th:value="${product.id}" name="productId"/>
+                    <button type="submit" class="btn btn-warning btn-sm">Add to Cart</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+</body>
+</html>

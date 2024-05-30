@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title th:text="${title} =='Kết Quả'"></title>
+</head>
+<body>
+<section layout:fragment = "content">
+    <h1 th:text="${message}"></h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tên</th>
+            <th>Tuổi</th>
+            <th>Image</th>
+            <th>Khoa</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${sinhVien.id}">ID</td>
+            <td th:text="${sinhVien.ten}">Tên</td>
+            <td th:text="${sinhVien.tuoi}">Tuổi</td>
+            <td><img src="/image/corgi.jpg" alt="corgi"></td>
+            <td th:text="${sinhVien.khoa}">Khoa</td>
+            <td>
+                <a th:href="@{/sinhvien/edit/(id=${sinhVien.id})}">Edit</a> |
+<!--                <a th:href="@{/sinhvien/delete/{id}(id=${book.id})}" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">Delete</a>-->
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+</body>
+</html>
