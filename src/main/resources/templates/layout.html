@@ -35,6 +35,23 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <style>   .wrap-menu-desktop {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.4) !important;
+}
+    .fix-menu-desktop .wrap-menu-desktop {
+    height: 70px;
+    background-color: rgba(255, 255, 255, 1) !important;
+    box-shadow: 0 0px 3px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 0px 3px 0px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 0px 3px 0px rgba(0, 0, 0, 0.2);
+    -o-box-shadow: 0 0px 3px 0px rgba(0, 0, 0, 0.2);
+    -ms-box-shadow: 0 0px 3px 0px rgba(0, 0, 0, 0.2);
+}</style>
     <!--===============================================================================================-->
 </head>
 <body class="animsition">
@@ -47,38 +64,26 @@
         <div class="top-bar">
             <div class="content-topbar flex-sb-m h-full container">
                 <div class="left-top-bar">
-                    Free shipping for standard order over $100
+                    Apple Reseller Authorized Team 13
                 </div>
 
                 <div class="right-top-bar flex-w h-full">
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        Help & FAQs
-                    </a>
 
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
-
-                            <li class="nav-item d-flex align-items-center"
-                                sec:authorize="isAuthenticated()">
-<span class="navbar-text text-white">
-Xin chào, <span sec:authentication="name" style="margin
-right: 20px;"></span>
-</span>
-                            </li>
-                            <li class="nav-item" sec:authorize="isAuthenticated()">
-                                <form th:action="@{/logout}" method="post">
-                                    <button class="btn btn-outline-light"
-                                            type="submit">Logout</button>
-                                </form>
-                            </li>
-                            <li class="nav-item" sec:authorize="!isAuthenticated()">
-                                <a class="btn btn-outline-light" href="/login">Login</a>
-                            </li>
-
-                    </a>
-
+                        <li class="nav-item d-flex align-items-center" sec:authorize="isAuthenticated()">
+                    <span class="navbar-text text-white">
+                        Xin chào, <span sec:authentication="name" style="margin-right: 20px;"></span>
+                    </span>
+                        </li>
+                        <li class="nav-item" sec:authorize="isAuthenticated()">
+                            <form th:action="@{/logout}" method="post">
+                                <button class="btn btn-outline-light" type="submit">Logout</button>
+                            </form>
+                        </li>
+                        <li class="nav-item" sec:authorize="!isAuthenticated()">
+                            <a class="btn btn-outline-light" href="/login">Login</a>
+                        </li>
 
                 </div>
-            </div>
         </div>
 
         <div class="wrap-menu-desktop">
