@@ -133,7 +133,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 .loader05 {
   width: 56px;
   height: 56px;
-  border: 4px solid #717fe0;
+  border: 4px solid #000000;
   border-radius: 50%;
   position: relative;
   animation: loader-scale 1s ease-out infinite;
@@ -161,7 +161,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   height: 38px;
   bottom: 0px;
   right: 40px;
-  background-color: #717fe0;
+  background-color: #000000;
   opacity: 0.5;
   justify-content: center;
   align-items: center;
@@ -505,7 +505,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   min-width: 15px;
   height: 15px;
   padding: 0 3px;
-  background-color: #717fe0;
+  background-color: #000000;
 }
 
 /*---------------------------------------------*/
@@ -732,7 +732,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 .main-menu-m {
   padding-top: 10px;
   padding-bottom: 10px;
-  background-color: #717fe0;
+  background-color: #000000;
 }
 
 .main-menu-m > li > a {
@@ -1650,7 +1650,7 @@ button.mfp-close {
 }
 
 .swal-button {
-  background-color: #717fe0;
+  background-color: #000000;
   font-family: Poppins-Regular;
   font-size: 16px;
   color: white;
@@ -1737,7 +1737,7 @@ button.mfp-close {
 
 .show-search:hover:after,
 .show-filter:hover:after {
-  background-color: #717fe0;
+  background-color: #000000;
   border-color: #717fe0;
 }
 
@@ -2014,8 +2014,9 @@ input.num-product::-webkit-inner-spin-button {
 
 /*---------------------------------------------*/
 .block1-txt:hover {
-  background-color: rgba(103,117,214,0.8);
+  background-color: rgba(0, 0, 0, 0.6); /* Màu đen với độ mờ 60% */
 }
+
 
 .block1-txt:hover .block1-txt-child2 {
   -webkit-transform: scaleX(1);
@@ -3051,8 +3052,8 @@ input.num-product::-webkit-inner-spin-button {
 
 .hov-cl0:hover {color: #fff;}
 .hov-bg0:hover {background-color: #fff;}
-.hov-cl1:hover {color: #717fe0;}
-.hov-bg1:hover {background-color: #717fe0;}
+.hov-cl1:hover {color: #000000;}
+.hov-bg1:hover {background-color: #000000;}
 
 /*---------------------------------------------*/
 .hov-img0 {

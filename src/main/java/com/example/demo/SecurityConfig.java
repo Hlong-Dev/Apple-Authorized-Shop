@@ -43,20 +43,22 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(@NotNull HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/css/**", "/js/**", "/", "/oauth/**", "/register", "/error", "/products", "/cart", "/cart/**")
-                        .permitAll() // Cho phép truy cập không cần xác thực.
+                        .requestMatchers("/css/**", "/js/**").permitAll()
+                        // Allow access to specific paths without authentication
+                        .requestMatchers("/", "/oauth/**", "/register", "/error", "/products", "/cart", "/cart/**").permitAll()
+                        // Restrict access to ADMIN only paths
                         .requestMatchers("/products/edit/**", "/products/add", "/products/delete")
                         .hasAnyAuthority("ADMIN") // Chỉ cho phép ADMIN truy cập.
                         .requestMatchers("/api/**")
                         .permitAll() // API mở cho mọi người dùng.
-                        .anyRequest().authenticated() // Bất kỳ yêu cầu nào khác cần xác thực.
+                        .anyRequest().permitAll()// Bất kỳ yêu cầu nào khác cần xác thực.
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/login") // Trang chuyển hướng sau khi đăng xuất.
-                        .deleteCookies("JSESSIONID") // Xóa cookie.
-                        .invalidateHttpSession(true) // Hủy phiên làm việc.
-                        .clearAuthentication(true) // Xóa xác thực.
+                        .logoutSuccessUrl("/login")
+                        .deleteCookies("JSESSIONID", "remember-me")
+                        .invalidateHttpSession(true)
+                        .clearAuthentication(true)
                         .permitAll()
                 )
                 .formLogin(formLogin -> formLogin
