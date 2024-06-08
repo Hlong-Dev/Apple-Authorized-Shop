@@ -17,7 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/products")
@@ -105,5 +105,17 @@ public class ProductController {
     public String deleteProduct(@PathVariable Long id) {
         productService.deleteProductById(id);
         return "redirect:/products";
+    }
+
+    // New method to view product details
+    @GetMapping("/view/{id}")
+    public String viewProductDetails(@PathVariable Long id, Model model) {
+        Optional<Product> product = productService.getProductById(id);
+        if (product.isPresent()) {
+            model.addAttribute("product", product.get());
+            return "/products/view-product";
+        } else {
+            throw new IllegalArgumentException("Invalid product Id:" + id);
+        }
     }
 }
