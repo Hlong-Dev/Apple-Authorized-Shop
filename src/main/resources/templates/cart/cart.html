@@ -79,7 +79,7 @@
                                         </div>
                                     </td>
                                     <td class="column-2" th:text="${item.product.nameProduct}">Product Name</td>
-                                    <td class="column-3">$<span th:text="${item.product.price}">0.00</span></td>
+                                    <td class="column-3"><span th:text="${#numbers.formatDecimal(item.product.price, 0, 'COMMA', 0, 'POINT')} + ' VND'">0.00</span></td>
                                     <td class="column-4">
                                         <div class="wrap-num-product flex-w m-l-auto m-r-0">
                                             <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">

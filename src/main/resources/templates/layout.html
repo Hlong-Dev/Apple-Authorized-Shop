@@ -320,7 +320,7 @@ right: 20px;"></span>
                         </a>
 
                         <span class="header-cart-item-info">
-                            <span th:text="${item.quantity}">1</span> x $<span th:text="${item.product.price}">0.00</span>
+                            <span th:text="${item.quantity}">1</span> x <span th:text="${#numbers.formatDecimal(item.product.price, 0, 'COMMA', 0, 'POINT')} + ' VND'">0.00</span>
                         </span>
                     </div>
                 </li>
