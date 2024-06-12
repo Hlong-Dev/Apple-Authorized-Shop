@@ -21,7 +21,20 @@ public class CartService {
     public void addToCart(Long productId, int quantity) {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new IllegalArgumentException("Product not found: " + productId));
-        cartItems.add(new CartItem(product, quantity));
+
+        // Check if the product is already in the cart
+        CartItem existingCartItem = cartItems.stream()
+                .filter(item -> item.getProduct().getId().equals(productId))
+                .findFirst()
+                .orElse(null);
+
+        if (existingCartItem != null) {
+            // If the product is already in the cart, update the quantity
+            existingCartItem.setQuantity(existingCartItem.getQuantity() + quantity);
+        } else {
+            // If the product is not in the cart, add a new CartItem
+            cartItems.add(new CartItem(product, quantity));
+        }
     }
 
     public List<CartItem> getCartItems() {
