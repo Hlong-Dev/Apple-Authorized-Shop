@@ -208,7 +208,9 @@
                         <a th:href="@{/order/checkout}" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
                             Thanh Toán
                         </a>
-
+                        <a href="/payment" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+                            Thanh Toán với MoMo
+                        </a>
                         <!-- Method 2: Using <button> tag with JavaScript -->
 
                         </body>
@@ -221,6 +223,11 @@
     </form>
 
 </section>
+<script>
+    function initiatePayment() {
+        window.location.href = '/payment';
+    }
+</script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 </html>
