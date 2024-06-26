@@ -43,6 +43,18 @@
     backdrop-filter: blur(10px);
     background-color: rgba(255, 255, 255, 0.4) !important;
 }
+.mtext-109 {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 20px;
+    line-height: 1.3;
+    text-transform: uppercase;
+}
+.stext-104 {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.466667;
+}
+
     .fix-menu-desktop .wrap-menu-desktop {
     height: 70px;
     background-color: rgba(255, 255, 255, 1) !important;
@@ -113,11 +125,7 @@
                     <ul class="main-menu">
                         <li class="active-menu">
                             <a href="/">Trang Chủ</a>
-                            <ul class="sub-menu">
-                                <li><a href="index.html">Homepage 1</a></li>
-                                <li><a href="home-02.html">Homepage 2</a></li>
-                                <li><a href="home-03.html">Homepage 3</a></li>
-                            </ul>
+
                         </li>
 
                         <li>
@@ -148,7 +156,7 @@
                         <i class="zmdi zmdi-search"></i>
                     </div>
 
-                    <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
+                    <div id="cart-icon" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="0">
                         <i class="zmdi zmdi-shopping-cart"></i>
                     </div>
 
@@ -156,6 +164,7 @@
                         <i class="zmdi zmdi-favorite-outline"></i>
                     </a>
                 </div>
+
             </nav>
         </div>
     </div>
@@ -696,6 +705,57 @@ right: 20px;"></span>
 </script>
 <!--===============================================================================================-->
 <script th:src="@{/vendor/perfect-scrollbar/perfect-scrollbar.min.js}"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        updateCartCount();
+    });
+
+    function updateCartCount() {
+        fetch('/api/cart/count')
+            .then(response => response.text()) // Get the response as plain text
+            .then(data => {
+                const cartIcon = document.getElementById('cart-icon');
+                cartIcon.setAttribute('data-notify', data);
+            })
+            .catch(error => console.error('Error fetching cart count:', error));
+    }
+
+    function addToCart(productId, quantity) {
+        fetch(`/cart/add`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: new URLSearchParams({
+                productId: productId,
+                quantity: quantity
+            })
+        })
+        .then(response => response.text())
+        .then(data => {
+            updateCartCount();
+        })
+        .catch(error => console.error('Error adding to cart:', error));
+    }
+
+    function removeFromCart(productId) {
+        fetch(`/cart/remove/${productId}`)
+            .then(response => response.text())
+            .then(data => {
+                updateCartCount();
+            })
+            .catch(error => console.error('Error removing from cart:', error));
+    }
+
+    function clearCart() {
+        fetch(`/cart/clear`)
+            .then(response => response.text())
+            .then(data => {
+                updateCartCount();
+            })
+            .catch(error => console.error('Error clearing cart:', error));
+    }
+</script>
 <script>
     $('.js-pscroll').each(function(){
         $(this).css('position','relative');

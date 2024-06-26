@@ -5,6 +5,7 @@ import com.example.demo.model.Customers;
 import com.example.demo.model.Order;
 import com.example.demo.model.Product;
 import com.example.demo.service.CartService;
+import com.example.demo.service.MoMoPaymentService;
 import com.example.demo.service.OrderService;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,21 +37,37 @@ public class OrderController {
 //        return "redirect:/order/confirmation";
 //    }
 
+    @Autowired
+    private MoMoPaymentService moMoPaymentService;
+
     @PostMapping("/submit")
     public String submitOrder(
             @RequestParam("customerName") String customerName,
-            @RequestParam("phonecustomer") String phoneCustomer,
-            @RequestParam("addresscustomer") String addressCustomer,
-            @RequestParam("emailcustomer") String emailCustomer,
-            @RequestParam("descriptionorder") String descriptionOrder) {
+            @RequestParam("phoneCustomer") String phoneCustomer,
+            @RequestParam("addressCustomer") String addressCustomer,
+            @RequestParam("emailCustomer") String emailCustomer,
+            @RequestParam("descriptionOrder") String descriptionOrder,
+            @RequestParam("paymentMethod") String paymentMethod,
+            Model model) {
 
         List<CartItem> cartItems = cartService.getCartItems();
         if (cartItems.isEmpty()) {
             return "redirect:/cart";  // Redirect if cart is empty
         }
 
-        orderService.createOrder(customerName, phoneCustomer, addressCustomer, emailCustomer, descriptionOrder, cartItems);
-        return "redirect:/order/confirmation";
+        if ("momo".equals(paymentMethod)) {
+            try {
+                String payUrl = moMoPaymentService.createPayment(customerName, phoneCustomer, addressCustomer, emailCustomer, descriptionOrder);
+                return "redirect:" + payUrl;
+            } catch (Exception e) {
+                e.printStackTrace();
+                model.addAttribute("errorMessage", "Error occurred: " + e.getMessage());
+                return "error";
+            }
+        } else {
+            orderService.createOrder(customerName, phoneCustomer, addressCustomer, emailCustomer, descriptionOrder, cartItems);
+            return "redirect:/order/confirmation";
+        }
     }
 
 

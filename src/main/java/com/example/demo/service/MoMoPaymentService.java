@@ -1,6 +1,5 @@
 package com.example.demo.service;
 
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -22,6 +21,9 @@ public class MoMoPaymentService {
     @Autowired
     private CartService cartService;
 
+    @Autowired
+    private OrderService orderService;
+
     private final String endpoint = "https://test-payment.momo.vn/gw_payment/transactionProcessor";
     private final String partnerCode = "MOMOOJOI20210710";
     private final String accessKey = "iPXneGmrJH0G8FOP";
@@ -29,15 +31,18 @@ public class MoMoPaymentService {
     private final String returnUrl = "http://localhost:8080/order/confirmation";
     private final String notifyUrl = "https://8e37-125-235-208-163.ngrok-free.app/payment/notify";
 
-    public String createPayment() throws Exception {
+    public String createPayment(String customerName, String phoneCustomer, String addressCustomer, String emailCustomer, String descriptionOrder) throws Exception {
+        // Calculate total price
         double totalPrice = cartService.calculateTotalPrice();
-        String amount = String.valueOf((int) totalPrice); // Chuyển đổi tổng tiền thành chuỗi, đảm bảo là số nguyên
+        String amount = String.valueOf((int) totalPrice); // Convert total price to string and ensure it is an integer
 
+        // Generate orderId and requestId
         String orderId = String.valueOf(System.currentTimeMillis());
         String requestId = orderId;
         String orderInfo = "Payment for order " + orderId;
         String extraData = "";
 
+        // Create raw hash string
         String rawHash = "partnerCode=" + partnerCode +
                 "&accessKey=" + accessKey +
                 "&requestId=" + requestId +
@@ -48,8 +53,10 @@ public class MoMoPaymentService {
                 "&notifyUrl=" + notifyUrl +
                 "&extraData=" + extraData;
 
+        // Sign the raw hash string
         String signature = signSHA256(rawHash, serectkey);
 
+        // Create request body
         Map<String, String> requestBody = new HashMap<>();
         requestBody.put("partnerCode", partnerCode);
         requestBody.put("accessKey", accessKey);
@@ -63,9 +70,17 @@ public class MoMoPaymentService {
         requestBody.put("requestType", "captureMoMoWallet");
         requestBody.put("signature", signature);
 
+        // Send payment request
         String response = sendPaymentRequest(endpoint, requestBody);
         Map<String, Object> responseMap = new ObjectMapper().readValue(response, Map.class);
+
+        // Save order details
+        orderService.createOrder(customerName, phoneCustomer, addressCustomer, emailCustomer, descriptionOrder, cartService.getCartItems());
+
+        // Clear cart after order placement
         cartService.clearCart();
+
+        // Return payUrl for redirection
         return responseMap.get("payUrl").toString();
     }
 

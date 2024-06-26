@@ -36,7 +36,10 @@ public class CartService {
             cartItems.add(new CartItem(product, quantity));
         }
     }
-
+    public int getCartItemCount() {
+        List<CartItem> cartItems = getCartItems(); // Assume getCartItems() returns a list of cart items
+        return cartItems.size();
+    }
     public List<CartItem> getCartItems() {
         return cartItems;
     }
