@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -50,6 +49,14 @@ public class OrderService {
             detail.setOrder(order);
             detail.setProduct(item.getProduct());
             detail.setQuantity(item.getQuantity());
+            orderDetailRepository.save(detail);
+        }
+    }
+
+    @Transactional
+    public void saveOrderAfterPayment(Order order, List<OrderDetail> orderDetails) {
+        orderRepository.save(order);
+        for (OrderDetail detail : orderDetails) {
             orderDetailRepository.save(detail);
         }
     }

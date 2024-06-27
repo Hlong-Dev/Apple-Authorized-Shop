@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title th:text="${title} ?: 'Product'">Product</title>
+
+</head>
+<body>
+<section layout:fragment="content" sec:authorize="hasAuthority('ADMIN')" >
+    <div style="height: 90px;"></div>
+
+        <h1>Danh Sách Sản Phẩm</h1>
+        <div>
+            <a th:href="@{/admin/products/add}" class="btn btn-primary mb-3">Thêm sản phẩm mới</a>
+        </div>
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Category Name</th>
+                <th>Image</th>
+                <th>Actions</th>
+                <th>Add To Cart</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.id}"></td>
+                <td>
+                    <a th:href="@{/products/view/{id}(id=${product.id})}" th:text="${product.nameProduct}"></a>
+                </td>
+                <td th:text="${product.price}"></td>
+                <td th:text="${product.description}"></td>
+                <td th:text="${product.category.nameProductCategory}"></td>
+                <td>
+                    <img th:src="@{|${product.imagePath}|}" alt="Product Image" class="img-thumbnail" style="width: 100px; height: 100px;">
+                </td>
+                <td>
+                    <!-- Hiển thị nút sửa và xóa chỉ dành cho người dùng ADMIN -->
+                    <div sec:authorize="hasAuthority('ADMIN')">
+                        <a th:href="@{/admin/products/edit/{id}(id=${product.id})}" class="btn btn-success btn-sm">Sửa</a>
+                        <a th:href="@{/admin/products/delete/{id}(id=${product.id})}" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc không?')">Xóa</a>
+                    </div>
+                </td>
+                <td>
+                    <form th:action="@{/cart/add}" method="post">
+                        <input type="number" name="quantity" min="1" value="1" class="form-control d-inline-block" style="width: 70px;">
+                        <input type="hidden" th:value="${product.id}" name="productId"/>
+                        <button type="submit" class="btn btn-warning btn-sm">Add to Cart</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
+</section>
+</body>
+</html>

@@ -43,6 +43,18 @@
     backdrop-filter: blur(10px);
     background-color: rgba(255, 255, 255, 0.4) !important;
 }
+.img-thumbnail {
+    width: 319px !important;
+    padding: .25rem;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: .25rem;
+    transition: all .2s ease-in-out;
+    max-width: 100%;
+    height: auto;
+    height: 282px !important;
+        object-fit: cover;
+}
 .mtext-109 {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     font-size: 20px;
@@ -93,23 +105,23 @@
                     Apple Reseller Authorized Team 13
                 </div>
 
-                <div class="right-top-bar flex-w h-full">
+<!--                <div class="right-top-bar flex-w h-full">-->
 
-                        <li class="nav-item d-flex align-items-center" sec:authorize="isAuthenticated()">
-                    <span class="navbar-text text-white">
-                        Xin chào, <span sec:authentication="name" style="margin-right: 20px;"></span>
-                    </span>
-                        </li>
-                        <li class="nav-item" sec:authorize="isAuthenticated()">
-                            <form th:action="@{/logout}" method="post">
-                                <button class="btn btn-outline-light" type="submit">Logout</button>
-                            </form>
-                        </li>
-                        <li class="nav-item" sec:authorize="!isAuthenticated()">
-                            <a class="btn btn-outline-light" href="/login">Login</a>
-                        </li>
+<!--                        <li class="nav-item d-flex align-items-center" sec:authorize="isAuthenticated()">-->
+<!--                    <span class="navbar-text text-white">-->
+<!--                        Xin chào, <span sec:authentication="name" style="margin-right: 20px;"></span>-->
+<!--                    </span>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item" sec:authorize="isAuthenticated()">-->
+<!--                            <form th:action="@{/logout}" method="post">-->
+<!--                                <button class="btn btn-outline-light" type="submit">Logout</button>-->
+<!--                            </form>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item" sec:authorize="!isAuthenticated()">-->
+<!--                            <a class="btn btn-outline-light" href="/login">Login</a>-->
+<!--                        </li>-->
 
-                </div>
+<!--                </div>-->
         </div>
 
         <div class="wrap-menu-desktop">
@@ -163,7 +175,35 @@
                     <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
                         <i class="zmdi zmdi-favorite-outline"></i>
                     </a>
+
+                    <div class="dropdown">
+                        <a href="javascript:;" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <i class="zmdi zmdi-account"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-usermenu pull-right">
+                            <li class="nav-item" sec:authorize="isAuthenticated()">
+                                <a href="#">
+                                    <i></i>
+                                    <span sec:authentication="name"></span>
+                                </a>
+                            </li>
+                            <li class="nav-item" sec:authorize="isAuthenticated()">
+                                <a href="#" onclick="document.getElementById('logoutForm').submit()">
+                                    <i></i>Đăng xuất
+                                </a>
+                                <form id="logoutForm" th:action="@{/logout}" method="post" style="display: none;">
+                                    <button type="submit"></button>
+                                </form>
+                            </li>
+                            <li class="nav-item" sec:authorize="!isAuthenticated()">
+                                <a href="/login">
+                                    <i class="fa fa-sign-in pull-right"></i>Đăng nhập
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+
 
             </nav>
         </div>

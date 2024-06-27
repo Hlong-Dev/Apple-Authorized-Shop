@@ -28,13 +28,15 @@ public class MoMoPaymentService {
     private final String partnerCode = "MOMOOJOI20210710";
     private final String accessKey = "iPXneGmrJH0G8FOP";
     private final String serectkey = "sFcbSGRSJjwGxwhhcEktCHWYUuTuPNDB";
-    private final String returnUrl = "http://localhost:8080/order/confirmation";
+    private final String returnUrl = "http://localhost:8080/momo_return";
     private final String notifyUrl = "https://8e37-125-235-208-163.ngrok-free.app/payment/notify";
 
     public String createPayment(String customerName, String phoneCustomer, String addressCustomer, String emailCustomer, String descriptionOrder) throws Exception {
         // Calculate total price
         double totalPrice = cartService.calculateTotalPrice();
-        String amount = String.valueOf((int) totalPrice); // Convert total price to string and ensure it is an integer
+        double discount = cartService.getDiscount();
+        double finalPrice = totalPrice - discount;
+        String amount = String.valueOf((int) finalPrice); // Convert total price to string and ensure it is an integer
 
         // Generate orderId and requestId
         String orderId = String.valueOf(System.currentTimeMillis());

@@ -43,9 +43,10 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(@NotNull HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests(auth -> auth
                         .requestMatchers("/css/**", "/js/**", "/", "/oauth/**", "/register", "/error", "/products", "/cart", "/cart/**").permitAll()
-                        .requestMatchers("/products/edit/**", "/products/add", "/products/delete").hasAnyAuthority("ADMIN")
+                        .requestMatchers("/admin/products/edit/**", "/admin/products/add", "/admin/products/delete", "/admin/products").hasAnyAuthority("ADMIN")
                         .requestMatchers("/api/**").permitAll()
-                        .anyRequest().permitAll() // Thay đổi từ `.authenticated()` thành `.permitAll()` để cho phép truy cập bất kỳ yêu cầu nào khác mà không cần xác thực
+                        .anyRequest().permitAll()
+
                 )
                 .oauth2Login(oauth2 -> oauth2
                         .loginPage("/login")
@@ -76,8 +77,9 @@ public class SecurityConfig {
                         .tokenValiditySeconds(24 * 60 * 60)
                         .userDetailsService(userDetailsService())
                 )
+
                 .exceptionHandling(exceptionHandling -> exceptionHandling
-                        .accessDeniedPage("/403")
+                        .accessDeniedPage("/403.html")
                 )
                 .sessionManagement(sessionManagement -> sessionManagement
                         .maximumSessions(1)

@@ -2347,6 +2347,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 .ltext-102 {
+  font-weight:600;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 28px;
   line-height: 1.1;
