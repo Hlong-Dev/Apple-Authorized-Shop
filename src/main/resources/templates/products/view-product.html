@@ -68,7 +68,7 @@
                 <div class="col-md-6 col-lg-5 p-b-30 flex-container">
                     <div class="p-r-50 p-t-5 p-lr-0-lg">
                         <h4 class="mtext-105 cl2 js-name-detail p-b-14" th:text="${product.nameProduct}">Product Name</h4>
-                        <span class="mtext-106 cl2" th:text="${product.price}">$0.00</span>
+                        <span class="mtext-106 cl2" th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')} + ' VND'">$0.00</span>
                         <p class="stext-102 cl3 p-t-23" th:text="${product.description}">Product Description</p>
                         <div class="p-t-33">
                             <div class="flex-w flex-r-m p-b-10">

@@ -314,7 +314,7 @@
                                th:data-product-description="${product.description}"
                                th:data-product-image="${product.imagePath}"
                                class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-                                Quick View
+                                Xem Nhanh
                             </a>
 
                         </div>
@@ -323,7 +323,8 @@
                                 <a th:href="@{/products/view/{id}(id=${product.id})}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                                     <span th:href="@{/products/view/{id}(id=${product.id})}" th:text="${product.nameProduct}">Product Name</span>
                                 </a>
-                                <span class="stext-105 cl3" th:text="${product.price}">Price</span>
+                                <span class="stext-105 cl3" th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')} + ' VND'">Price</span>
+
                             </div>
                             <div class="block2-txt-child2 flex-r p-t-3">
                                 <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">

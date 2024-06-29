@@ -11,56 +11,39 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional
 public class OrderService {
+
     @Autowired
     private IOrderRepository orderRepository;
     @Autowired
     private IOrderDetailRepository orderDetailRepository;
     @Autowired
-    private CartService cartService; // Assuming you have a CartService
-
+    private CartService cartService;
     @Autowired
     private ICustomerRepository customerRepository;
-//    @Transactional
-//    public Order createOrder(String customerName, List<CartItem> cartItems) {
-//        Order order = new Order();
-//        order.setCustomerName(customerName);
-//        order = orderRepository.save(order);
-//        for (CartItem item : cartItems) {
-//            OrderDetail detail = new OrderDetail();
-//            detail.setOrder(order);
-//            detail.setProduct(item.getProduct());
-//            detail.setQuantity(item.getQuantity());
-//            orderDetailRepository.save(detail);
-//        }
-//// Optionally clear the cart after order placement
-//        cartService.clearCart();
-//        return order;
-//    }
-
 
     @Transactional
     public void createOrder(String customerName, String phoneCustomer, String addressCustomer, String emailCustomer, String descriptionOrder, List<CartItem> cartItems) {
-        // Tạo và thiết lập các thông tin khách hàng, có thể thông qua đối tượng Customer hoặc trực tiếp nếu bạn quản lý như vậy
+        // Create and save customer entity
         Customers customer = new Customers();
         customer.setNameCustomer(customerName);
         customer.setPhoneCustomer(phoneCustomer);
         customer.setAddressCustomer(addressCustomer);
         customer.setEmailCustomer(emailCustomer);
-        customerRepository.save(customer);  // Lưu thực thể customer
+        customerRepository.save(customer);
 
+        // Create and save order entity
         Order order = new Order();
         order.setCustomerName(customerName);
         order.setDescriptionOrder(descriptionOrder);
-
-
-        // Lưu đơn hàng và xử lý các mục trong giỏ hàng
         orderRepository.save(order);
-        // Bổ sung thêm logic xử lý các CartItem tương ứng
+
+        // Save order details for each cart item
         for (CartItem item : cartItems) {
             OrderDetail detail = new OrderDetail();
             detail.setOrder(order);
@@ -68,9 +51,13 @@ public class OrderService {
             detail.setQuantity(item.getQuantity());
             orderDetailRepository.save(detail);
         }
-        // Optionally clear the cart after order placement
-        cartService.clearCart();
-
     }
 
+    @Transactional
+    public void saveOrderAfterPayment(Order order, List<OrderDetail> orderDetails) {
+        orderRepository.save(order);
+        for (OrderDetail detail : orderDetails) {
+            orderDetailRepository.save(detail);
+        }
+    }
 }
