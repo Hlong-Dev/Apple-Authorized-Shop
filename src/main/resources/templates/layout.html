@@ -36,7 +36,29 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" th:href="@{/css/util.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
-    <style>   .wrap-menu-desktop {
+    <style>
+        .autocomplete-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+
+    background-color: white;
+    z-index: 1000;
+}
+
+.autocomplete-list li {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.autocomplete-list li:hover {
+    background-color: #f0f0f0;
+}
+
+        .wrap-menu-desktop {
     width: 100%;
     position: fixed;
     top: 0;
@@ -130,7 +152,7 @@
 
                 <!-- Logo desktop -->
                 <a href="#" class="logo">
-                    <img src="images/pngwing.com.png" alt="IMG-LOGO">
+                    <img src="https://i.imgur.com/4t3N0u7.png" alt="IMG-LOGO">
                 </a>
 
                 <!-- Menu desktop -->
@@ -858,7 +880,7 @@ right: 20px;"></span>
     $(document).ready(function() {
         $("#searchInputHeader").on("input", function() {
             var keyword = $(this).val();
-            if (keyword.length > 2) {  // Gợi ý khi có hơn 2 ký tự
+            if (keyword.length > 2) {  // Trigger suggestion when there are more than 2 characters
                 $.ajax({
                     url: "/products/autocomplete",
                     type: "GET",
@@ -866,14 +888,24 @@ right: 20px;"></span>
                     success: function(data) {
                         $("#autocompleteList").empty();
                         data.forEach(function(item) {
-                            $("#autocompleteList").append("<li>" + item + "</li>");
+                            var li = $("<li>").addClass("autocomplete-item");
+                            var link = $("<a>").attr("href", "/products/view/" + item.id).addClass("autocomplete-link");
+                            var img = $("<img>").attr("src", item.imagePath).attr("alt", "IMG-PRODUCT").addClass("img-thumbnai").css({ width: "50px", height: "50px" });
+                            var text = $("<span>").text(item.name);
+
+                            link.append(img).append(text);
+                            li.append(link);
+                            $("#autocompleteList").append(li);
                         });
                     }
                 });
+            } else {
+                $("#autocompleteList").empty(); // Clear suggestions if the input is less than 3 characters
             }
         });
     });
 </script>
+
 <!--===============================================================================================-->
 <script th:src="@{/js/main.js}"></script>
 </body>
