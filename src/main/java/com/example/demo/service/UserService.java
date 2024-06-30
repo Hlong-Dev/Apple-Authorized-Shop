@@ -68,4 +68,7 @@ public class UserService implements UserDetailsService {
             UsernameNotFoundException {
         return userRepository.findByUsername(username);
     }
+    public long getUserCount() {
+        return userRepository.count();
+    }
 }

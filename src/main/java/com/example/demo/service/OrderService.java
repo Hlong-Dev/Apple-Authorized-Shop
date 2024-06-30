@@ -20,14 +20,16 @@ public class OrderService {
 
     @Autowired
     private IOrderRepository orderRepository;
+
     @Autowired
     private IOrderDetailRepository orderDetailRepository;
+
     @Autowired
     private CartService cartService;
+
     @Autowired
     private ICustomerRepository customerRepository;
 
-    @Transactional
     public void createOrder(String customerName, String phoneCustomer, String addressCustomer, String emailCustomer, String descriptionOrder, List<CartItem> cartItems) {
         // Create and save customer entity
         Customers customer = new Customers();
@@ -41,7 +43,8 @@ public class OrderService {
         Order order = new Order();
         order.setCustomerName(customerName);
         order.setDescriptionOrder(descriptionOrder);
-        orderRepository.save(order);
+
+        double totalOrderPrice = 0.0; // Initialize total order price
 
         // Save order details for each cart item
         for (CartItem item : cartItems) {
@@ -49,8 +52,37 @@ public class OrderService {
             detail.setOrder(order);
             detail.setProduct(item.getProduct());
             detail.setQuantity(item.getQuantity());
+
+            // Calculate total price for this order detail (assuming item.getProduct().getPrice() returns the price of the product)
+            double totalPrice = item.getQuantity() * item.getProduct().getPrice();
+            detail.setTotalPrice(totalPrice);
+
+            totalOrderPrice += totalPrice; // Add to total order price
+
             orderDetailRepository.save(detail);
         }
+
+        order.setTotalOrderPrice(totalOrderPrice); // Set total order price to order entity
+
+        orderRepository.save(order);
+    }
+
+    public long getOrderCount() {
+        return orderRepository.count();
+    }
+
+    public double getTotalRevenue() {
+        double totalRevenue = 0.0;
+        List<Order> orders = orderRepository.findAll(); // Fetch all orders
+
+        for (Order order : orders) {
+            List<OrderDetail> orderDetails = order.getOrderDetails();
+            for (OrderDetail detail : orderDetails) {
+                totalRevenue += detail.getTotalPrice(); // Assuming getTotalPrice() returns the total price for this order detail
+            }
+        }
+
+        return totalRevenue;
     }
 
     @Transactional
@@ -60,4 +92,12 @@ public class OrderService {
             orderDetailRepository.save(detail);
         }
     }
+
+    public void deleteOrderById(Long id) {
+        orderRepository.deleteById(id);
+    }
+
+    // Other methods as needed...
+
 }
+

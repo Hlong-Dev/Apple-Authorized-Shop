@@ -201,7 +201,13 @@
     $('.js-hide-cart').on('click',function(){
         $('.js-panel-cart').removeClass('show-header-cart');
     });
+       $('.js-show-f').on('click',function(){
+           $('.js-panel-f').addClass('show-header-f');
+       });
 
+       $('.js-hide-f').on('click',function(){
+           $('.js-panel-f').removeClass('show-header-f');
+       });
     /*==================================================================
     [ Cart ]*/
     $('.js-show-sidebar').on('click',function(){

@@ -27,7 +27,8 @@ public class Order {
 
     @OneToMany(mappedBy = "order")
     private List<OrderDetail> orderDetails;
-
+    @Column(name = "total_order_price")
+    private Double totalOrderPrice;
 
 
     @ManyToOne

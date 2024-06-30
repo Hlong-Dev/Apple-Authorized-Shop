@@ -1,8 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Product;
-import com.example.demo.service.CategoryService;
-import com.example.demo.service.ProductService;
+import com.example.demo.service.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -28,11 +28,31 @@ public class AdminController {
 
     @Autowired
     private ProductService productService;
+    @Autowired
+    private OrderService orderService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private AccessLogService accessLogService;
 
     @Autowired
     private CategoryService categoryService;
     @GetMapping("/home")
-    public String adminHome() {
+    public String adminHome(Model model) {
+        long productCount = productService.getProductCount();
+        long orderCount = orderService.getOrderCount();
+        long userCount = userService.getUserCount();
+        double totalRevenue = orderService.getTotalRevenue();
+        long accessLogCount = accessLogService.getAccessLogCount(); // Get access log count
+        List<Object[]> accessLogStats = accessLogService.getAccessLogStats(); // Get access log stats
+
+        model.addAttribute("totalRevenue", totalRevenue);
+        model.addAttribute("productCount", productCount);
+        model.addAttribute("orderCount", orderCount);
+        model.addAttribute("userCount", userCount);
+        model.addAttribute("accessLogCount", accessLogCount); // Add access log count to model
+        model.addAttribute("accessLogStats", accessLogStats); // Add access log stats to model
+
         return "/admin/home"; // Điều hướng đến trang home của admin
     }
     @GetMapping
