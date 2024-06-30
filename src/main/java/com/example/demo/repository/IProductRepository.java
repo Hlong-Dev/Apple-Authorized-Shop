@@ -15,5 +15,7 @@ public interface IProductRepository extends JpaRepository<Product,Long> {
     List<Product> findByNameProductContainingIgnoreCase(String name);
     @Query("SELECT p FROM Product p WHERE p.nameProduct LIKE %:keyword% OR p.description LIKE %:keyword%")
     Page<Product> findByKeyword(@Param("keyword") String keyword, Pageable pageable);
+    List<Product> findByCategoryId(Long categoryId);
 
+    Page<Product> findByCategoryId(Long categoryId, Pageable pageable);
 }

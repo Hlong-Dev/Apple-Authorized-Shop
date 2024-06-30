@@ -112,7 +112,35 @@
     .main-menu > li.active-menu > a {
     color: #6c7ae0;
     font-family: SF Pro Text, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
-}</style>
+}
+        .section-header-copy-container {
+    font-size: 28px;
+    color: black;
+    line-height: 1.1428571429;
+    font-weight: 600;
+    letter-spacing: .007em;
+    font-family: SF Pro Display, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+    }
+    .item-slick1.slick-slide.slick-current.slick-active {
+    height: 303px;
+    }
+    .social-icon img {
+    width: 50px;
+    filter: brightness(0);
+    }
+    </style>
+
+
+    </style>
+    <style type="text/css">
+        .social-icon{z-index:1000}.social-icon img{width:50px}
+        .social-icon--zalo{position:fixed;left:15px;bottom:80px;display:block}
+        .social-icon--facebook{position:fixed;bottom:150px;left:15px;display:block}
+        .social-icon-mobile{display:none}
+        .social-icon-mobile img{width:25px}
+        .social-icon-mobile div{flex:1;display:flex;align-items:center;justify-content:center}.social-icon-mobile p{margin:0;margin-top:5px;font-size:10px;color:#fff}.social-icon-mobile a{display:flex;flex-direction:column;align-items:center;justify-content:center}.form-register{width:100%;max-width:100%;padding:0}@media (max-width:768px){.social-icon--facebook,.social-icon--zalo{display:none}.social-icon-mobile{display:flex;background-color:#00a3ff;height:60px;position:fixed;bottom:0;width:100%;z-index:1000}}
+    </style>
+
     <!--===============================================================================================-->
 </head>
 <body class="animsition">
@@ -421,7 +449,26 @@ right: 20px;"></span>
         </div>
     </div>
 </div>
-
+<a href="https://zalo.me" target="_blank" class="social-icon social-icon--zalo">
+    <img src="images/pngegg (1).png" alt="Zalo">
+</a>
+<a href="https://facebook.com" target="_blank" class="social-icon social-icon--facebook">
+    <img src="images/facebook.png" alt="Facebook">
+</a>
+<div class="social-icon-mobile">
+    <div>
+        <a href="https://zalo.me" target="_blank">
+            <img src="images/icons/zalo-icon.png" alt="Zalo">
+            <p>Zalo</p>
+        </a>
+    </div>
+    <div>
+        <a href="https://facebook.com" target="_blank">
+            <img src="images/facebook-icon.png" alt="Facebook">
+            <p>Facebook</p>
+        </a>
+    </div>
+</div>
 
     <section layout:fragment="content">
 
