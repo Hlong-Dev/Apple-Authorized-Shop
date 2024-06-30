@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -35,10 +36,12 @@ public class CartController {
     }
 
     @PostMapping("/add")
-    public String addToCart(@RequestParam Long productId, @RequestParam int quantity) {
+    @ResponseBody
+    public ResponseEntity<?> addToCart(@RequestParam Long productId, @RequestParam int quantity) {
         cartService.addToCart(productId, quantity);
-        return "redirect:/cart";
+        return ResponseEntity.ok().body("{\"message\": \"Sản phẩm được thêm vào giỏ hàng thành công!!\"}");
     }
+
 
     @PostMapping("/applyDiscount")
     public String applyDiscountCode(@RequestParam String discountCode, HttpSession session) {

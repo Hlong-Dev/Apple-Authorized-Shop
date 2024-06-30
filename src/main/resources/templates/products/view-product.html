@@ -4,13 +4,10 @@
       layout:decorate="~{layout}">
 <head>
     <title>Product Details</title>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-<section layout:fragment="content">
-    <div style="height: 90px;"></div>
-
-    <!--    <div class="container">-->
+<!--    <div class="container">-->
 <!--        <h1>Product Details</h1>-->
 <!--        <div>-->
 <!--            <p><strong>ID:</strong> <span th:text="${product.id}"></span></p>-->
@@ -25,24 +22,23 @@
 <!--            <a th:href="@{/products}" class="btn btn-primary">Back to list</a>-->
 <!--        </div>-->
 <!--    </div>-->
+<section layout:fragment="content">
+    <div style="height: 90px;"></div>
     <div class="container">
         <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-            <a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
-                Home
+            <a href="/" class="stext-109 cl8 hov-cl1 trans-04">
+                Trang Chủ
                 <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
             </a>
-
             <a href="product.html" class="stext-109 cl8 hov-cl1 trans-04">
-                Men
+                <span th:text="${product.category.nameProductCategory}"></span>
                 <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
             </a>
-
             <span class="stext-109 cl4">
-			Lightweight Jacket
-		</span>
+                <span th:text="${product.nameProduct}"></span>
+            </span>
         </div>
     </div>
-    <!-- Additional product detail section -->
     <section class="sec-product-detail bg0 p-t-65 p-b-60">
         <div class="container">
             <div class="row">
@@ -64,7 +60,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-md-6 col-lg-5 p-b-30 flex-container">
                     <div class="p-r-50 p-t-5 p-lr-0-lg">
                         <h4 class="mtext-105 cl2 js-name-detail p-b-14" th:text="${product.nameProduct}">Product Name</h4>
@@ -73,12 +68,12 @@
                         <div class="p-t-33">
                             <div class="flex-w flex-r-m p-b-10">
                                 <div class="size-204 flex-w flex-m respon6-next">
-                                    <form th:action="@{/cart/add}" method="post">
+                                    <form id="add-to-cart-form" th:action="@{/cart/add}" method="post">
                                         <div class="wrap-num-product flex-w m-r-20 m-tb-10">
                                             <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
                                                 <i class="fs-16 zmdi zmdi-minus"></i>
                                             </div>
-                                            <input type="number" name="quantity" min="1" value="1" class="mtext-104 cl3 txt-center num-product" >
+                                            <input type="number" name="quantity" min="1" value="1" class="mtext-104 cl3 txt-center num-product">
                                             <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
                                                 <i class="fs-16 zmdi zmdi-plus"></i>
                                             </div>
@@ -86,33 +81,28 @@
                                         <input type="hidden" th:value="${product.id}" name="productId"/>
                                         <button type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">Add to Cart</button>
                                     </form>
-
-
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="flex-w flex-m p-l-100 p-t-40 respon7">
-                            <div class="flex-m bor9 p-r-10 m-r-11">
-                                <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
-                                    <i class="zmdi zmdi-favorite"></i>
-                                </a>
-                            </div>
-                            <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
-                                <i class="fa fa-facebook"></i>
-                            </a>
-                            <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
-                                <i class="fa fa-twitter"></i>
-                            </a>
-                            <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
-                                <i class="fa fa-google-plus"></i>
-                            </a>
-                        </div>
+                    <div class="flex-m bor9 p-r-10 m-r-11">
+                        <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
+                            <i class="zmdi zmdi-favorite"></i>
+                        </a>
                     </div>
+                    <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                    <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
+                        <i class="fa fa-google-plus"></i>
+                    </a>
                 </div>
-
+            </div>
             <div class="bor10 m-t-50 p-t-43 p-b-40">
                 <div class="tab01">
                     <ul class="nav nav-tabs" role="tablist">
@@ -141,7 +131,40 @@
         </div>
     </section>
 </section>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelector('#add-to-cart-form').addEventListener('submit', function(e) {
+            e.preventDefault(); // Ngăn chặn hành vi submit mặc định
+            var form = this;
+            var formData = new FormData(form);
 
-
+            fetch(form.getAttribute('action'), {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Hiển thị thông báo SweetAlert
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Đã thêm sản phẩm vào giỏ hàng',
+                    text: data.message
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        location.reload(); // Tải lại trang khi bấm OK
+                    }
+                });
+            })
+            .catch(error => {
+                // Hiển thị thông báo lỗi nếu có
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Failed to add product to cart'
+                });
+            });
+        });
+    });
+</script>
 </body>
 </html>

@@ -17,7 +17,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/products")
@@ -117,5 +119,19 @@ public class ProductController {
         } else {
             throw new IllegalArgumentException("Invalid product Id:" + id);
         }
+    }
+    @GetMapping("/search")
+    public String searchProducts(@RequestParam("keyword") String keyword, Model model) {
+        List<Product> products = productService.searchProducts(keyword);
+        model.addAttribute("products", products);
+        return "/products/product-list";
+    }
+    @GetMapping("/autocomplete")
+    @ResponseBody
+    public List<String> autocompleteProducts(@RequestParam("term") String keyword) {
+        List<Product> productList = productService.searchProducts(keyword);
+        return productList.stream()
+                .map(Product::getNameProduct)
+                .collect(Collectors.toList());
     }
 }

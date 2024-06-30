@@ -13,9 +13,13 @@ import java.util.Optional;
 @Transactional
 public class ProductService {
     private final IProductRepository productRepository;
+    private final AccessLogService accessLogService; // Inject AccessLogService
+
     // Retrieve all products from the database
     public List<Product> getAllProducts() {
-        return productRepository.findAll();
+        List<Product> products = productRepository.findAll();
+        accessLogService.logAccess("getAllProducts"); // Log access
+        return products;
     }
     // Retrieve a product by its id
     public Optional<Product> getProductById(Long id) {
@@ -51,5 +55,11 @@ public class ProductService {
             throw new IllegalStateException("Product with ID " + id + " does not exist.");
         }
         productRepository.deleteById(id);
+    }
+    public long getProductCount() {
+        return productRepository.count(); // Assuming you have a JpaRepository
+    }
+    public List<Product> searchProducts(String keyword) {
+        return productRepository.findByNameProductContainingIgnoreCase(keyword);
     }
 }

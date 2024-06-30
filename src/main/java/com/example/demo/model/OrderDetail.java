@@ -28,7 +28,8 @@ public class OrderDetail {
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
-
+    @Column(name = "total_price")
+    private Double totalPrice;
     // Constructors, Getters and Setters
 }
 
