@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title th:text="${title} ?: 'Order List'">Order List</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div style="height: 90px;"></div>
+
+    <div class="bg0 m-t-23 p-b-140">
+        <div class="container">
+            <div class="flex-w flex-sb-m p-b-52">
+                <h1>Đơn Hàng Của Bạn</h1>
+            </div>
+
+            <table class="table">
+                <thead>
+                <tr>
+
+                    <th>Tên khách hàng</th>
+                    <th>Ghi chú cho cửa hàng</th>
+                    <th>Tổng giá trị đơn hàng</th>
+                    <!-- Add more columns as needed -->
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="order : ${orders}">
+
+                    <td th:text="${order.customerName}"></td>
+                    <td th:text="${order.descriptionOrder}"></td>
+                    <td th:text="${#numbers.formatDecimal(order.totalOrderPrice, 0, 'COMMA', 0, 'POINT')} + ' VND'"></td>
+                    <!-- Add more columns as needed -->
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+</body>
+</html>

@@ -43,6 +43,7 @@ public class OrderService {
         Order order = new Order();
         order.setCustomerName(customerName);
         order.setDescriptionOrder(descriptionOrder);
+        order.setCustomers(customer); // Set the customer for the order
 
         double totalOrderPrice = 0.0; // Initialize total order price
 
@@ -53,7 +54,7 @@ public class OrderService {
             detail.setProduct(item.getProduct());
             detail.setQuantity(item.getQuantity());
 
-            // Calculate total price for this order detail (assuming item.getProduct().getPrice() returns the price of the product)
+            // Calculate total price for this order detail
             double totalPrice = item.getQuantity() * item.getProduct().getPrice();
             detail.setTotalPrice(totalPrice);
 
@@ -96,8 +97,12 @@ public class OrderService {
     public void deleteOrderById(Long id) {
         orderRepository.deleteById(id);
     }
-
+    public List<Order> getOrdersByUsername(String username) {
+        return orderRepository.findByCustomerName(username);
+    }
+    public List<Order> getAllOrders() {
+        return orderRepository.findAll();
+    }
     // Other methods as needed...
 
 }
-

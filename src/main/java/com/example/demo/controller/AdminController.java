@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.Order;
 import com.example.demo.model.Product;
+import com.example.demo.model.User;
 import com.example.demo.service.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +36,9 @@ public class AdminController {
     private UserService userService;
     @Autowired
     private AccessLogService accessLogService;
-
     @Autowired
     private CategoryService categoryService;
+
     @GetMapping("/home")
     public String adminHome(Model model) {
         long productCount = productService.getProductCount();
@@ -55,6 +57,7 @@ public class AdminController {
 
         return "/admin/home"; // Điều hướng đến trang home của admin
     }
+
     @GetMapping
     public String showProductList(Model model) {
         model.addAttribute("products", productService.getAllProducts());
@@ -139,5 +142,33 @@ public class AdminController {
         } else {
             throw new IllegalArgumentException("Invalid product Id:" + id);
         }
+    }
+
+    @GetMapping("/orders")
+    public String showOrderList(Model model) {
+        List<Order> orders = orderService.getAllOrders();
+        model.addAttribute("orders", orders);
+        return "/admin/order-list";
+    }
+
+    @GetMapping("/users")
+    public String showUserList(Model model) {
+        List<User> users = userService.getAllUsers();
+        model.addAttribute("users", users);
+        return "/admin/user-list";
+    }
+
+    @PostMapping("/users/lock/{username}")
+    public String lockUserAccount(@PathVariable String username, RedirectAttributes redirectAttributes) {
+        userService.lockUserAccount(username);
+        redirectAttributes.addFlashAttribute("message", "Khóa Tài Khoản Người Dùng Thành Công");
+        return "redirect:/admin/products/users";
+    }
+
+    @PostMapping("/users/unlock/{username}")
+    public String unlockUserAccount(@PathVariable String username, RedirectAttributes redirectAttributes) {
+        userService.unlockUserAccount(username);
+        redirectAttributes.addFlashAttribute("message", "Mở Khóa Tài Khoản Người Dùng Thành Công");
+        return "redirect:/admin/products/users";
     }
 }

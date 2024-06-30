@@ -1,42 +1,45 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.CartItem;
+import com.example.demo.model.Order;
+import com.example.demo.model.User;
 import com.example.demo.service.CartService;
 import com.example.demo.service.MoMoPaymentService;
 import com.example.demo.service.OrderService;
+import com.example.demo.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
 @Controller
 @RequestMapping("/order")
+@RequiredArgsConstructor
 public class OrderController {
 
-    @Autowired
-    private OrderService orderService;
-
-    @Autowired
-    private CartService cartService;
-
-    @Autowired
-    private MoMoPaymentService moMoPaymentService;
-
-    @Autowired
-    private PaymentVnpayController paymentVnpayController;
+    private final OrderService orderService;
+    private final CartService cartService;
+    private final MoMoPaymentService moMoPaymentService;
+    private final PaymentVnpayController paymentVnpayController;
+    private final UserService userService;
 
     @GetMapping("/checkout")
-    public String showCheckout(Model model) {
+    public String showCheckout(Model model, Authentication authentication) {
+        // Get currently logged-in user's details
+        String username = authentication.getName();
+        User user = userService.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
         model.addAttribute("total", cartService.calculateTotalPrice());
         model.addAttribute("discount", cartService.getDiscount());
         model.addAttribute("finalPrice", cartService.calculateTotalPrice() - cartService.getDiscount());
+        model.addAttribute("user", user);
+
         return "order/checkout";
     }
 
@@ -46,8 +49,8 @@ public class OrderController {
             @RequestParam("phoneCustomer") String phoneCustomer,
             @RequestParam("addressCustomer") String addressCustomer,
             @RequestParam("emailCustomer") String emailCustomer,
-            @RequestParam("descriptionOrder") String descriptionOrder,
             @RequestParam("paymentMethod") String paymentMethod,
+            @RequestParam("descriptionOrder") String descriptionOrder,
             HttpServletRequest request,
             Model model) {
 
@@ -58,7 +61,7 @@ public class OrderController {
 
         if ("momo".equals(paymentMethod)) {
             try {
-                String payUrl = moMoPaymentService.createPayment(customerName, phoneCustomer, addressCustomer, emailCustomer, descriptionOrder);
+                String payUrl = moMoPaymentService.createPayment(customerName, phoneCustomer, addressCustomer, emailCustomer, "Payment for order");
                 return "redirect:" + payUrl;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -79,7 +82,15 @@ public class OrderController {
             return "redirect:/order/confirmation";
         }
     }
+    @GetMapping("/list")
+    public String listOrders(Model model, Authentication authentication) {
+        String username = authentication.getName();
+        List<Order> orders = orderService.getOrdersByUsername(username);
 
+        model.addAttribute("orders", orders);
+
+        return "order/order-list"; // Assuming you have an order-list.html template
+    }
     @GetMapping("/confirmation")
     public String orderConfirmation(Model model) {
         model.addAttribute("message", "Your order has been successfully placed.");

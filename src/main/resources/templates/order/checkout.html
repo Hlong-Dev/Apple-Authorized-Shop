@@ -79,19 +79,22 @@
             <div class="p-md-4">
                 <form th:action="@{/order/submit}" method="post">
                     <div class="form-group mb-3">
-                        <input type="text" id="customerName" name="customerName" class="form-control" placeholder="Họ và tên" required>
+                        <input type="text" id="customerName" name="customerName" th:value="${user.username}" class="form-control" placeholder="Họ và tên" required>
+                    </div>
+<!--                    <div class="form-group mb-3">-->
+<!--                        <input type="text" id="customerId" name="customerName" th:value="${user.id}" class="" placeholder="userId" required>-->
+<!--                    </div>-->
+                    <div class="form-group mb-3">
+                        <input type="text" id="phoneCustomer" name="phoneCustomer" th:value="${user.phone}"  class="form-control" placeholder="Số điện thoại" required>
                     </div>
                     <div class="form-group mb-3">
-                        <input type="text" id="phoneCustomer" name="phoneCustomer" class="form-control" placeholder="Số điện thoại" required>
+                        <input type="text" id="addressCustomer" name="addressCustomer" th:value="${user.address}" class="form-control" placeholder="Địa chỉ" required>
                     </div>
                     <div class="form-group mb-3">
-                        <input type="text" id="addressCustomer" name="addressCustomer" class="form-control" placeholder="Địa chỉ" required>
+                        <input type="email" id="emailCustomer" name="emailCustomer" th:value="${user.email}" class="form-control" placeholder="Email của bạn" required>
                     </div>
                     <div class="form-group mb-3">
-                        <input type="email" id="emailCustomer" name="emailCustomer" class="form-control" placeholder="Email của bạn" required>
-                    </div>
-                    <div class="form-group mb-3">
-                        <input type="text" id="descriptionOrder" name="descriptionOrder" class="form-control" placeholder="Ghi chú cho cửa hàng" required>
+                        <input type="text" id="descriptionOrder" name="descriptionOrder" class="form-control" placeholder="Ghi chú cho cửa hàng">
                     </div>
                     <div class="form-group mb-3">
                         <div class="form-check">
