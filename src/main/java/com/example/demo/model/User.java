@@ -48,11 +48,17 @@ public class User implements UserDetails {
     @Pattern(regexp = "^[0-9]*$", message = "Phone must be number")
     private String phone;
 
+    @Column(name = "address", length = 100)
+    private String address;
+
     @Column(name = "provider", length = 50)
     private String provider;
 
     @Column(name = "provider_id", length = 100)
     private String providerId;
+
+    @Column(name = "account_non_locked")
+    private boolean accountNonLocked = true;  // Initialize with default value
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
@@ -74,7 +80,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return accountNonLocked;
     }
 
     @Override
@@ -100,3 +106,4 @@ public class User implements UserDetails {
         return getClass().hashCode();
     }
 }
+

@@ -42,7 +42,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(@NotNull HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/css/**", "/js/**", "/", "/oauth/**", "/register", "/error", "/products", "/cart", "/cart/**").permitAll()
+                        .requestMatchers("/css/**", "/js/**","/image/**", "/", "/oauth/**", "/register", "/error", "/products", "/cart", "/cart/**").permitAll()
                         .requestMatchers("/admin/products/edit/**", "/admin/products/add", "/admin/products/delete", "/admin/products","/admin/products/home").hasAnyAuthority("ADMIN")
                         .requestMatchers("/api/**").permitAll()
                         .anyRequest().permitAll()

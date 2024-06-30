@@ -6,6 +6,9 @@ import com.example.demo.service.ProductService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,7 +20,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -35,8 +40,13 @@ public class ProductController {
     private CategoryService categoryService;
 
     @GetMapping
-    public String showProductList(Model model) {
-        model.addAttribute("products", productService.getAllProducts());
+    public String showProductList(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "4") int size, Model model) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Product> productPage = productService.getAllProducts(pageable);
+
+        model.addAttribute("productPage", productPage);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", productPage.getTotalPages());
         return "/products/product-list";
     }
 
@@ -120,18 +130,34 @@ public class ProductController {
             throw new IllegalArgumentException("Invalid product Id:" + id);
         }
     }
+
     @GetMapping("/search")
-    public String searchProducts(@RequestParam("keyword") String keyword, Model model) {
-        List<Product> products = productService.searchProducts(keyword);
-        model.addAttribute("products", products);
+    public String searchProducts(@RequestParam("keyword") String keyword,
+                                 @RequestParam(defaultValue = "0") int page,
+                                 @RequestParam(defaultValue = "4") int size,
+                                 Model model) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Product> productPage = productService.searchProducts(keyword, pageable);
+
+        model.addAttribute("productPage", productPage);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", productPage.getTotalPages());
+        model.addAttribute("keyword", keyword);
         return "/products/product-list";
     }
+
     @GetMapping("/autocomplete")
     @ResponseBody
-    public List<String> autocompleteProducts(@RequestParam("term") String keyword) {
+    public List<Map<String, String>> autocompleteProducts(@RequestParam("term") String keyword) {
         List<Product> productList = productService.searchProducts(keyword);
         return productList.stream()
-                .map(Product::getNameProduct)
+                .map(product -> {
+                    Map<String, String> result = new HashMap<>();
+                    result.put("id", String.valueOf(product.getId()));
+                    result.put("name", product.getNameProduct());
+                    result.put("imagePath", product.getImagePath());
+                    return result;
+                })
                 .collect(Collectors.toList());
     }
 }

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layoutAdmin}">
+<head>
+    <title th:text="${title} ?: 'User List'">User List</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="right_col" role="main">
+        <div class="bg0 m-t-23 p-b-140">
+            <div class="container">
+                <div class="flex-w flex-sb-m p-b-52">
+                    <h1>Danh Sách Người Dùng</h1>
+                </div>
+                <p th:if="${message}" th:text="${message}"></p>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên người dùng</th>
+                        <th>Email</th>
+                        <th>Số điện thoại</th>
+                        <th>Địa chỉ</th>
+                        <th>Actions</th>
+                        <!-- Add more columns as needed -->
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="user : ${users}">
+                        <td th:text="${user.id}"></td>
+                        <td th:text="${user.username}"></td>
+                        <td th:text="${user.email}"></td>
+                        <td th:text="${user.phone}"></td>
+                        <td th:text="${user.address}"></td>
+                        <td>
+                            <form th:action="@{'/admin/products/users/lock/' + ${user.username}}" method="post">
+                                <button type="submit" class="btn btn-warning" th:if="${user.accountNonLocked}">Khóa</button>
+                            </form>
+                            <form th:action="@{'/admin/products/users/unlock/' + ${user.username}}" method="post">
+                                <button type="submit" class="btn btn-success" th:if="${!user.accountNonLocked}">Mở khóa</button>
+                            </form>
+                        </td>
+                        <!-- Add more columns as needed -->
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
