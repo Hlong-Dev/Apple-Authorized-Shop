@@ -6,8 +6,8 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-
 import java.util.List;
+
 @Setter
 @Getter
 @RequiredArgsConstructor
@@ -50,8 +50,6 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
-
-
     @OneToMany(mappedBy = "product")
     private List<OrderDetail> orderDetails;
 
@@ -61,6 +59,9 @@ public class Product {
 
     private String imagePath;
 
+    // New field for sale price
+    @Column(name = "saleprice")
+    private Double salePrice;
+
     // Constructors, Getters and Setters
 }
-

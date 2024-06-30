@@ -67,14 +67,19 @@
                         <div class="block2-txt flex-w flex-t p-t-14">
                             <div class="block2-txt-child1 flex-col-l">
                                 <a th:href="@{/products/view/{id}(id=${product.id})}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                    <span th:href="@{/products/view/{id}(id=${product.id})}" th:text="${product.nameProduct}">Product Name</span>
+                                    <span th:text="${product.nameProduct}">Product Name</span>
                                 </a>
-                                <span class="stext-105 cl3" th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')} + ' VND'">Price</span>
+                                <span class="stext-105 cl3" th:if="${product.salePrice != null}" style="text-decoration: line-through;"
+                                      th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')} + ' VND'">Price</span>
+                                <span class="stext-105 cl3" th:if="${product.salePrice == null}"
+                                      th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')} + ' VND'">Price</span>
+                                <span class="stext-106 cl3" th:if="${product.salePrice != null}"
+                                      th:text="${#numbers.formatDecimal(product.salePrice, 0, 'COMMA', 0, 'POINT')} + ' VND'">Sale Price</span>
                             </div>
                             <div class="block2-txt-child2 flex-r p-t-3">
                                 <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                    <img class="icon-heart1 dis-block trans-04" src="https://i.imgur.com/sdtJZfp.png" alt="ICON">
-                                    <img class="icon-heart2 dis-block trans-04 ab-t-l" src="https://i.imgur.com/TuAH8WK.png" alt="ICON">
+                                    <img class="icon-heart1 dis-block trans-04" src="https://i.imgur.com/JY3PugV.png" alt="ICON">
+                                    <img class="icon-heart2 dis-block trans-04 ab-t-l" src="https://i.imgur.com/32F0Wpx.png" alt="ICON">
                                 </a>
                             </div>
                         </div>

@@ -189,4 +189,13 @@ public class ProductController {
                 })
                 .collect(Collectors.toList());
     }
+    @GetMapping("/sale")
+    public String showSaleProducts(Model model) {
+        List<Product> saleProducts = productService.getAllProducts().stream()
+                .filter(product -> product.getSalePrice() != null)
+                .collect(Collectors.toList());
+
+        model.addAttribute("saleProducts", saleProducts);
+        return "/products/sale-products";
+    }
 }
