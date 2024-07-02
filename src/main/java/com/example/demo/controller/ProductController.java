@@ -38,7 +38,22 @@ public class ProductController {
 
     @Autowired
     private CategoryService categoryService;
+    @GetMapping("/category/{categoryId}")
+    public String showProductsByCategory(@PathVariable Long categoryId,
+                                         @RequestParam(defaultValue = "0") int page,
+                                         @RequestParam(defaultValue = "4") int size,
+                                         Model model) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Product> productPage = productService.getProductsByCategory(categoryId, pageable);
 
+        model.addAttribute("productPage", productPage);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", productPage.getTotalPages());
+        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("selectedCategoryId", categoryId);
+
+        return "/products/product-list";
+    }
     @GetMapping
     public String showProductList(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "4") int size, Model model) {
         Pageable pageable = PageRequest.of(page, size);
@@ -47,9 +62,23 @@ public class ProductController {
         model.addAttribute("productPage", productPage);
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", productPage.getTotalPages());
+        model.addAttribute("categories", categoryService.getAllCategories());
         return "/products/product-list";
     }
+    @GetMapping("/all")
+    public String showAllProducts(@RequestParam(defaultValue = "0") int page,
+                                  @RequestParam(defaultValue = "4") int size,
+                                  Model model) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Product> productPage = productService.getAllProducts(pageable);
 
+        model.addAttribute("productPage", productPage);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", productPage.getTotalPages());
+        model.addAttribute("categories", categoryService.getAllCategories());
+
+        return "/products/product-list";
+    }
     @GetMapping("/add")
     public String showAddForm(Model model) {
         model.addAttribute("product", new Product());
