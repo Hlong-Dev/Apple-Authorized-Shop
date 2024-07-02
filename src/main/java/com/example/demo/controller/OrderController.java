@@ -35,6 +35,12 @@ public class OrderController {
         User user = userService.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
+        // Check if the cart is empty
+        List<CartItem> cartItems = cartService.getCartItems();
+        if (cartItems.isEmpty()) {
+            return "redirect:/cart"; // Redirect if cart is empty
+        }
+
         model.addAttribute("total", cartService.calculateTotalPrice());
         model.addAttribute("discount", cartService.getDiscount());
         model.addAttribute("finalPrice", cartService.calculateTotalPrice() - cartService.getDiscount());
@@ -42,7 +48,6 @@ public class OrderController {
 
         return "order/checkout";
     }
-
     @PostMapping("/submit")
     public String submitOrder(
             @RequestParam("customerName") String customerName,

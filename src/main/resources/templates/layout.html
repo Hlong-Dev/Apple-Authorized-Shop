@@ -36,6 +36,7 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" th:href="@{/css/util.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/introjs.min.css">
     <style>
         .autocomplete-list {
     list-style-type: none;
@@ -47,6 +48,18 @@
 
     background-color: white;
     z-index: 1000;
+}
+.btn-primary {
+    color: #fff;
+    background-color: black;
+    border-color: black;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #1d1d1f; /* Apple's dark grey hover color */
+    border-color: #1d1d1f;
+    color: #fff;
 }
 
 .autocomplete-list li {
@@ -363,10 +376,8 @@ right: 20px;"></span>
                     <img src="images/icons/icon-close2.png" alt="CLOSE">
                 </button>
                 <form class="wrap-search-header flex-w p-l-15" method="get" action="/products/search">
-                    <div class="flex-c-m trans-04">
-                        <i class="zmdi zmdi-search"></i>
-                    </div>
-                    <input id="searchInputHeader" type="text" name="keyword" placeholder="Search...">
+
+                    <input id="searchInputHeader" type="text" name="keyword" placeholder="Tìm kiếm Macbook, phụ kiện...">
                     <ul id="autocompleteList" class="autocomplete-list"></ul> <!-- Thêm danh sách gợi ý vào đây -->
                 </form>
             </div>
@@ -634,7 +645,10 @@ right: 20px;"></span>
                 <div class="col-md-6 col-lg-5 p-b-30">
                     <div class="p-r-50 p-t-5 p-lr-0-lg">
                         <h4 id="quick-view-name" class="mtext-105 cl2 js-name-detail p-b-14">Product Name</h4>
-                        <span id="quick-view-price" class="mtext-106 cl2">$58.79</span>
+                        <div id="quick-view-prices">
+                            <span id="quick-view-original-price" class="mtext-106 cl2" style="text-decoration: line-through; display: none;">$58.79</span>
+                            <span id="quick-view-sale-price" class="mtext-106 cl2">$58.79</span>
+                        </div>
                         <p id="quick-view-description" class="stext-102 cl3 p-t-23">Product description goes here...</p>
                         <div class="p-t-33">
                             <div class="flex-w flex-r-m p-b-10">
@@ -650,7 +664,7 @@ right: 20px;"></span>
                                             </div>
                                         </div>
                                         <input type="hidden" id="quick-view-product-id" name="productId"/>
-                                        <button type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">Add to Cart</button>
+                                        <button type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">Thêm vào giỏ hàng</button>
                                     </form>
                                 </div>
                             </div>
@@ -689,15 +703,30 @@ right: 20px;"></span>
                     id: this.getAttribute('data-product-id'),
                     nameProduct: this.getAttribute('data-product-name'),
                     price: this.getAttribute('data-product-price'),
+                    salePrice: this.getAttribute('data-product-sale-price'),
                     description: this.getAttribute('data-product-description'),
                     imagePath: this.getAttribute('data-product-image')
                 };
+
+                // Format price as VND
+                function formatPrice(price) {
+                    return parseFloat(price).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+                }
 
                 // Update modal content
                 document.getElementById('quick-view-img').src = product.imagePath;
                 document.getElementById('quick-view-img-link').href = product.imagePath;
                 document.getElementById('quick-view-name').textContent = product.nameProduct;
-                document.getElementById('quick-view-price').textContent = product.price;
+
+                if (product.salePrice) {
+                    document.getElementById('quick-view-original-price').textContent = formatPrice(product.price);
+                    document.getElementById('quick-view-original-price').style.display = 'inline';
+                    document.getElementById('quick-view-sale-price').textContent = formatPrice(product.salePrice);
+                } else {
+                    document.getElementById('quick-view-original-price').style.display = 'none';
+                    document.getElementById('quick-view-sale-price').textContent = formatPrice(product.price);
+                }
+
                 document.getElementById('quick-view-description').textContent = product.description;
                 document.getElementById('quick-view-product-id').value = product.id;
 
@@ -750,6 +779,7 @@ right: 20px;"></span>
         });
     });
 </script>
+
 
 
 <script th:src="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>
@@ -947,6 +977,30 @@ right: 20px;"></span>
         });
     });
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/intro.min.js"></script>
+<script>introJs().start()</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var myCarousel = document.getElementById('myCarousel');
+        var carouselItems = myCarousel.querySelectorAll('.carousel-item');
+        var totalItems = carouselItems.length;
+        var currentIndex = 0;
+
+        function updateCarousel() {
+            // Loại bỏ lớp active khỏi tất cả các phần tử
+            for (var i = 0; i < totalItems; i++) {
+                carouselItems[i].classList.remove('active');
+            }
+            // Thêm lớp active cho phần tử tiếp theo
+            carouselItems[currentIndex].classList.add('active');
+            // Tăng chỉ số currentIndex
+            currentIndex = (currentIndex + 1) % totalItems;
+        }
+
+        setInterval(updateCarousel, 3000); // 3000 milliseconds = 3 seconds, adjust as needed
+    });
+</script>
+
 <!--===============================================================================================-->
 <script th:src="@{/js/main.js}"></script>
 </body>

@@ -4,40 +4,78 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
 <head>
-    <title>Home</title>
+    <title>Trang Chủ - Nhóm 13</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+        h3.essential-card-header.typography-card-headline {
+            font-size: 28px;
+            line-height: 1.1428571429;
+            font-weight: 600;
+            letter-spacing: .007em;
+            font-family: SF Pro Display, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+        }        .item-container {
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      padding: 20px;
+                  }
+                  .card-set {
+                      display: flex;
+                      list-style-type: none;
+                      padding: 0;
 
-    <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="images/icons/favicon.png"/>
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="vendor/MagnificPopup/magnific-popup.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="css/util.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+                      border-radius: 20px;
+                  }
+                  .gallery-item {
+                      margin: 10px;
+                      flex: 1;
+                  }
+                  .card {
+            position: relative;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+              border: 0px solid rgba(0, 0, 0, .125) !important;
+            border-radius: .25rem;
+        }
+                  .card {
+                      height: 469px;
+                      background-color: #fafafa;
+                      border-radius: 20px;
+                      text-align: center;
+                      padding: 20px;
+
+                  }
+                 .card img {
+                     object-fit: contain;
+
+            height: 373px !important;
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+        }
+                  .card-header {
+                      font-size: 24px;
+                      font-weight: bold;
+                      margin-bottom: 10px;
+                  }
+                  .card-description {
+                      font-size: 16px;
+                      margin-bottom: 20px;
+                  }
+                  .card-link {
+                      color: blue;
+                      text-decoration: none;
+                      font-size: 14px;
+                  }
+
+    </style>
     <style>
         .bg1 {
     background-color: black;
@@ -47,22 +85,21 @@
     position: relative;
     border: 1px solid #e6e6e6;
 }
-       .section-header {
-    display: flex;
-    align-items: center;
+       .section-header {    display: flex;
     justify-content: space-between;
-    width: 102%;
-    padding: 0px 193px;
-    padding-top: 47px;
+    grid-gap: 28px;
+    gap: 28px;
+    padding-bottom: 80px;
+    margin-top: -10px;
 }
-        .section-header-headline {
-           font-size: 80px;
-           color: black;
+       .typography-section-headlin {
+       color:black;
+    font-size: 80px;
     line-height: 1.05;
     font-weight: 600;
     letter-spacing: -0.015em;
     font-family: SF Pro Display, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
-        }
+}
     .section-header-copy-container {
     font-size: 28px;
     color: black;
@@ -95,7 +132,275 @@
         .social-icon-mobile img{width:25px}
         .social-icon-mobile div{flex:1;display:flex;align-items:center;justify-content:center}.social-icon-mobile p{margin:0;margin-top:5px;font-size:10px;color:#fff}.social-icon-mobile a{display:flex;flex-direction:column;align-items:center;justify-content:center}.form-register{width:100%;max-width:100%;padding:0}@media (max-width:768px){.social-icon--facebook,.social-icon--zalo{display:none}.social-icon-mobile{display:flex;background-color:#00a3ff;height:60px;position:fixed;bottom:0;width:100%;z-index:1000}}
     </style>
+<style>
+    .typography-section-headline {
+    color:black;
+    font-size: 56px;
+    line-height: 1.0714285714;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    font-family: SF Pro Display, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+</style>
+<style>
+    .rs-shop-container {
+    margin: 0 22px;
+    min-height: 196px;
+    position: relative;
+    width: auto;
+}
+    .rs-shop-header, .rs-shop-subheader {
+    display: inline;
+    font-family: SF Pro Display, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 48px;
+    font-weight: 600;
+    letter-spacing: -.003em;
+    line-height: 1.0834933333;
+}
+    .rs-shop-header-section {
+    max-width: 640px;
+    padding: 80px 0 64px;
+}
+    .dd-color-teal span.dd-highlight, .dd-color-teal svg.dd-glyph-svg {
+    color: #08827c;
+    fill: #08827c;
+}
+    .seg-eduInd .rs-storehome .rs-shop-chatstore-section {
+    padding-top: 60px;
 
+.rs-shop-container .rs-shop-chatstore-section {
+    inset-inline-end: 0;
+    position: absolute;
+}
+.row {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+}</style>
+    <style>
+        .section-ways-to-save {
+    background-color: rgb(255,255,255);
+    padding-block-start: 0;
+}
+
+.section-ways-to-save .ways-to-save-gallery {
+    --item-width: 372px;
+}
+.section {
+    overflow: hidden;
+    padding-block: 120px;
+}
+user agent stylesheet
+section {
+    display: block;
+    unicode-bidi: isolate;
+}
+        .section-content-responsive {
+    margin-inline: auto;
+    width: 87.5vw;
+    max-width: var(--section-max-width);
+}
+        :root {
+    --modal-button-size: 36px;
+    --gallery-card-width: 372px;
+    --gallery-card-height: 680px;
+    --section-header: 50px;
+    --nav-collective-height: calc(var(--r-globalnav-height, 0px) + var(--r-localnav-height, 0px) + var(--ribbon-height, 0px) + var(--r-localeswitcher-height, 0px) + var(--r-globalmessage-segment-height, 0px));
+    --section-max-width: 1260px;
+        .section-values .values-gallery {
+    --item-height: 372px;
+}
+.scroll-gallery:has(.paddlenav-disabled) {
+    padding-block-end: 0;
+}
+        .scroll-gallery {
+    --item-width: 406px;
+    --item-height: 479px;
+    --gallery-side-padding: max(calc(6.25vw - var(--modal-scrollbar-buffer, 0px)/2),calc(50vw - var(--section-max-width)/2 - var(--modal-scrollbar-buffer, 0px)/2));
+    width: 100%;
+    position: relative;
+    margin-block-start: var(--section-header);
+}
+        .scroll-gallery .scroll-container {
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-padding: calc(var(--gallery-side-padding));
+    scrollbar-width: none;
+}
+        .section-values .values-gallery {
+    --item-height: 372px;
+}
+.scroll-gallery {
+    --item-width: 406px;
+    --item-height: 479px;
+    --gallery-side-padding: max(calc(6.25vw - var(--modal-scrollbar-buffer, 0px)/2),calc(50vw - var(--section-max-width)/2 - var(--modal-scrollbar-buffer, 0px)/2));
+    width: 100%;
+    position: relative;
+    margin-block-start: var(--section-header);
+}
+        .scroll-gallery .item-container {
+    list-style: none;
+    margin: auto 0;
+    padding: 0;
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 20px;
+    gap: 20px;
+    width: -moz-fit-content;
+    width: fit-content;
+    padding-inline: var(--gallery-side-padding);
+}
+ol, ul {
+    margin-inline-start: 1.1764705882em;
+}
+        .scroll-gallery .gallery-item {
+    position: relative;
+    width: var(--item-width);
+    min-height: var(--item-height);
+    scroll-snap-align: start;
+}
+        .section-values .tile-content {
+    padding-block-end: 70px;
+}
+.tile-content {
+    --sk-tile-padding-large: 40px;
+    --sk-tile-padding-medium: 30px;
+    --sk-tile-padding-small: 20px;
+}
+@media only screen and (min-width: 1441px) {
+    .tile-content {
+        padding: var(--sk-tile-padding-xlarge);
+    }
+}
+.tile-content {
+    --sk-tile-padding-large: var(--sk-tile-padding, 60px 8.3333333333%);
+    --sk-tile-padding-xlarge: var(--sk-tile-padding, var(--sk-tile-padding-large));
+    --sk-tile-padding-medium: var(--sk-tile-padding, var(--sk-tile-padding-large));
+    --sk-tile-padding-small: var(--sk-tile-padding, var(--sk-tile-padding-large));
+    padding: var(--sk-tile-padding-large);
+}
+@media only screen and (min-width: 1441px) {
+    .tile-content {
+        padding: var(--sk-tile-padding-xlarge);
+    }
+}
+.tile-content {
+    --sk-tile-padding-large: var(--sk-tile-padding, 60px 8.3333333333%);
+    --sk-tile-padding-xlarge: var(--sk-tile-padding, var(--sk-tile-padding-large));
+    --sk-tile-padding-medium: var(--sk-tile-padding, var(--sk-tile-padding-large));
+    --sk-tile-padding-small: var(--sk-tile-padding, var(--sk-tile-padding-large));
+    padding: var(--sk-tile-padding-large);
+}
+user agent stylesheet
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+.tile-rounded {
+    --sk-tile-border-radius-large: 30px;
+    --sk-tile-border-radius-small: 20px;
+}
+.tile-rounded {
+    --sk-tile-border-radius-large: var(--sk-tile-border-radius, 18px);
+    --sk-tile-border-radius-xlarge: var(--sk-tile-border-radius, var(--sk-tile-border-radius-large));
+    --sk-tile-border-radius-medium: var(--sk-tile-border-radius, var(--sk-tile-border-radius-large));
+    --sk-tile-border-radius-small: var(--sk-tile-border-radius, var(--sk-tile-border-radius-large));
+    border-radius: var(--sk-tile-border-radius-large);
+}
+.tile {
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    --sk-tile-box-shadow: initial;
+       --sk-tile-background:rgb(255,255,255);
+
+    --sk-tile-button-background: rgba(210,210,215,0.64);
+    --sk-tile-button-background-hover: rgba(223,223,227,0.6976);
+    --sk-tile-button-background-active: rgba(193,193,198,0.6544);
+    --sk-tile-button-icon-color: rgba(0,0,0,0.56);
+    --sk-tile-button-icon-color-hover: rgba(0,0,0,0.64);
+    box-sizing: border-box;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    background: var(--sk-tile-background);
+    box-shadow: var(--sk-tile-box-shadow);
+}
+.tile-rounded {
+    --sk-tile-border-radius-large: var(--sk-tile-border-radius, 18px);
+    --sk-tile-border-radius-xlarge: var(--sk-tile-border-radius, var(--sk-tile-border-radius-large));
+    --sk-tile-border-radius-medium: var(--sk-tile-border-radius, var(--sk-tile-border-radius-large));
+    --sk-tile-border-radius-small: var(--sk-tile-border-radius, var(--sk-tile-border-radius-large));
+    border-radius: var(--sk-tile-border-radius-large);
+}
+.tile {
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    --sk-tile-box-shadow: initial;
+    --sk-tile-background: rgb(255,255,255);
+    --sk-tile-button-background: rgba(210,210,215,0.64);
+    --sk-tile-button-background-hover: rgba(223,223,227,0.6976);
+    --sk-tile-button-background-active: rgba(193,193,198,0.6544);
+    --sk-tile-button-icon-color: rgba(0,0,0,0.56);
+    --sk-tile-button-icon-color-hover: rgba(0,0,0,0.64);
+    box-sizing: border-box;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    background: var(--sk-tile-background);
+    box-shadow: var(--sk-tile-box-shadow);
+}
+        .typography-tile-headline {
+    font-size: 28px;
+    line-height: 1.1428571429;
+    font-weight: 600;
+    letter-spacing: .007em;
+    font-family: SF Pro Display, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+        .section-ways-to-save .tile .tile-media {
+    margin-block-start: auto;
+    padding-block-end: 30px;
+    align-self: center;
+}
+.section-ways-to-save .tile {
+    flex-direction: column;
+    display: flex;
+}
+        .tile.tile-discounts.tile-rounded {
+ width: 372px;
+        height: 479px;
+        border: 2px solid #ccc;
+                border-radius: 30px;
+}
+        .tile.tile-trade-in.tile-rounded {
+   width: 372px;
+        height: 479px;
+        border: 2px solid #ccc;
+                border-radius: 30px;
+
+}
+        .tile.tile-applecare.tile-rounded {
+   width: 372px;
+        height: 479px;
+        border: 2px solid #ccc;
+                border-radius: 30px;
+
+}
+        .section-ways-to-save .tile-content {
+    --sk-tile-padding-large: 30px;
+}
+        .section-ways-to-save .tile-discounts .tile-media {
+    align-self: flex-end !important;
+}
+            .typography-tile-headline {
+        color: black;
+        font-size: 28px;
+        line-height: 1.1428571429;
+        font-weight: 600;
+        letter-spacing: .007em;
+        font-family: SF Pro Display, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+        padding-bottom: 19px;
+    }
+    </style>
     <!--===============================================================================================-->
 </head>
 <body class="animsition">
@@ -122,17 +427,17 @@
             </div>
         </div>
     </section>
-
+    <div style="height: 40px;"></div>
+<div class="container">
     <div class="section-content-responsive">
         <header class="section-header row">
-            <h1 class="section-header-headline typography-section-headline">Mac</h1>
+            <h1 class="section-header-headline typography-section-headlin">Mac</h1>
             <div class="section-header-copy-container">
                 <p>Bạn nghĩ được <br>là Mac làm được.</p>
             </div>
         </header>
     </div>
-
-<!-- Banner -->
+</div><!-- Banner -->
 <div class="sec-banner bg0 p-t-80 p-b-50">
     <div class="container">
         <div class="row">
@@ -234,10 +539,12 @@
 <!-- Product -->
 <section class="bg0 p-t-23 p-b-140">
     <div class="container">
-        <div class="p-b-10">
-            <h3 class="ltext-103 cl5">
-                sản phẩm mac mới nhất
-            </h3>
+        <div class="section-content-responsive">
+            <header class="section-header row">
+                <h2 class="section-header-headline typography-section-headline" data-staggered-anchor="" data-staggered-before-item="" style="">Khám phá dòng sản phẩm.</h2>
+                <div class="section-header-cta-container typography-section-headline-link column" data-staggered-before-item="" style="">
+                    <a href="/vn/mac/compare/" data-analytics-title="compare all models" class="icon-wrapper"><span class="icon-copy">So sánh tất cả các phiên bản</span><span class="icon icon-after more"></span></a> </div>
+            </header>
         </div>
 
         <div class="row">
@@ -280,17 +587,15 @@
             </div>
         </div>
     </div>
+
 </section>
     <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="images/tv50.png" class="d-block w-100" alt="...">
+                <img src="images/ma4.png" class="d-block w-100" alt="...">
 
             </div>
-            <div class="carousel-item">
-                <img src="images/tv48.png" class="d-block w-100" alt="...">
 
-            </div>
 
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
@@ -303,12 +608,77 @@
         </button>
 
     </div>
+    <div class="container">
+        <div style="height: 80px;"></div>
+    <div class="section-content-responsive">
+        <header class="section-header row">
+            <h2 class="section-header-headline typography-section-headline" data-staggered-anchor="" data-staggered-before-item="" style="">Phụ kiện thiết yếu cho Mac.</h2>
+            <div class="section-header-cta-container typography-section-headline-link column" data-staggered-before-item="" style="">
+                <a href="/vn/shop/goto/mac/accessories" data-analytics-title="all mac accessories" class="icon-wrapper"><span class="icon-copy">Tất cả phụ kiện máy Mac</span><span class="icon icon-after more"></span></a> </div>
+        </header>
+    </div>
+    </div>
+    <div class="container">
+
+        <ul class="card-set" role="list">
+            <li role="listitem" class="gallery-item grid-item current" data-analytics-gallery-item-id="mac accessories">
+                <div class="card essential-card" tabindex="-1">
+                    <div class="card-modifier card-padding">
+                        <div class="card-viewport-content">
+                            <div class="essential-card-content">
+                                <a class="essential-card-block-link" href="/vn/shop/goto/mac/accessories" data-analytics-title="shop mac accessories" tabindex="-1" aria-hidden="true"></a>
+                                <div class="essential-card-text-container">
+                                    <h3 class="essential-card-header typography-card-headline">Phụ kiện Mac</h3>
+                                    <p class="essential-card-copy typography-family-paragraph">Khám phá bàn phím, chuột và các phụ kiện thiết yếu khác.</p>
+                                    <a href="http://localhost:8080/products/category/3" data-analytics-title="shop mac accessories" class="icon-wrapper essential-card-link typography-family-paragraph">
+                                        <span class="icon-copy">Mua phụ kiện máy Mac</span>
+                                        <span class="icon icon-after more"></span>
+                                    </a>
+                                </div>
+                                <figure class="essential-card-image image-bottom-center">
+                                    <img src="/images/ma1.jpg" alt="Phụ kiện Mac">
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li role="listitem" class="gallery-item grid-item" data-analytics-gallery-item-id="studio display">
+                <div class="card essential-card" tabindex="-1">
+                    <div class="card-modifier card-padding">
+                        <div class="card-viewport-content">
+                            <div class="essential-card-content">
+                                <a class="essential-card-block-link" href="/vn/studio-display/" data-analytics-title="learn more - studio display" tabindex="-1" aria-hidden="true"></a>
+                                <div class="essential-card-text-container">
+                                    <h3 class="essential-card-header typography-card-headline">Tính Liên Tục</h3>
+                                    <p class="essential-card-copy typography-family-paragraph">Chuyển tiếp mượt mà giữa các thiết bị.</p>
+                                    <a href="https://www.apple.com/vn/macos/continuity/" data-analytics-title="learn more - studio display" aria-label="Tìm hiểu thêm về Studio Display" class="icon-wrapper essential-card-link typography-family-paragraph">
+                                        <span class="icon-copy">Tìm hiểu thêm</span>
+                                        <span class="icon icon-after more"></span>
+                                    </a>
+                                </div>
+                                <figure class="essential-card-image image-bottom-center">
+                                    <img src="/images/ma3.jpg" alt="Studio Display">
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
     <section class="bg0 p-t-23 p-b-140">
         <div class="container">
-            <div class="p-b-10">
-                <h3 class="ltext-103 cl5">
-                    MAC giảm giá cho sinh viên
-                </h3>
+            <div class="as-l-container rs-shop-container rs-shop-container-withchatandstore">
+                <div class="row">
+                    <div class="column large-8 small-12 rs-shop-header-section" data-autom="shop-header">
+                        <div class="dd-color-teal">
+                            <h1 class="rs-shop-header"><span class="dd-highlight">Education Store.</span></h1>
+                            <div class="rs-shop-subheader"> Giảm giá cho học sinh, sinh viên !!!</div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
             <div class="row">
@@ -349,34 +719,89 @@
             </div>
         </div>
     </section>
+    <div id="myCarouse" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="images/ma5.png" class="d-block w-100" alt="...">
 
+            </div>
+
+
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+
+    </div>
+    <section class="section section-ways-to-save" data-analytics-section-engagement="name:ways to save">
+        <div class="section-content-responsive">
+            <h2 class="typography-section-headline">Những cách để tiết kiệm.</h2>
+        </div>
+        <div class="scroll-gallery ways-to-save-gallery" aria-label="thư viện nhiều cách để tiết kiệm">
+            <div class="scroll-container">
+                <ul role="list" class="item-container">
+                    <li class="gallery-item current" role="listitem">
+                        <div class="tile tile-discounts tile-rounded">
+                            <div class="tile-content">
+                                <div tabindex="-1">
+                                    <h3 class="typography-tile-headline">Ưu đãi dành cho<br>giáo dục đại học.</h3>
+                                    <div class="tile-copy">
+                                        <p>Ưu đãi dành cho giáo dục chỉ có<br class="small">tại Apple Store.</p>
+                                    </div>
+                                </div>
+                                <p class="tile-link"><a href="/products" class="icon-wrapper"><span class="icon-copy">Mua sắm với ưu đãi dành cho giáo dục của Apple</span><span class="icon icon-after more"></span></a></p>
+                            </div>
+                            <div class="tile-media">
+                                <img src="/images/p4.jpg" alt="">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="gallery-item" role="listitem">
+                        <div class="tile tile-trade-in tile-rounded">
+                            <div class="tile-content">
+                                <div tabindex="-1">
+                                    <h3 class="typography-tile-headline">Tiết kiệm với Apple&nbsp;Trade&nbsp;In.</h3>
+                                    <div class="tile-copy">
+                                        <p>Đổi thiết bị đủ điều kiện của bạn lấy điểm tín dụng cho lần mua hàng tiếp&nbsp;theo.</p>
+                                    </div>
+                                </div>
+                                <p class="tile-link"><a href="https://www.apple.com/vn-edu/shop/trade-in" class="icon-wrapper"><span class="icon-copy">Tìm hiểu thêm</span><span class="icon icon-after more"></span></a></p>
+                            </div>
+                            <div class="tile-media">
+                                <img src="/images/p5.jpg" alt="">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="gallery-item" role="listitem">
+                        <div class="tile tile-applecare tile-rounded">
+                            <div class="tile-content">
+                                <div tabindex="-1">
+                                    <h3 class="typography-tile-headline">Nhận ưu đãi đặc biệt cho AppleCare+.</h3>
+                                    <div class="tile-copy">
+                                        <p>Ưu đãi bảo hành cho các trường hợp hư hỏng do sự cố bất ngờ và hơn thế nữa với chính sách trợ giá cho giáo dục áp dụng với AppleCare+ cho Mac và AppleCare+ cho iPad.</p>
+                                    </div>
+                                </div>
+                                <p class="tile-link"><a href="https://www.apple.com/vn/support/products/" class="icon-wrapper"><span class="icon-copy">Tìm hiểu thêm</span><span class="icon icon-after more"></span></a></p>
+                            </div>
+                            <div class="tile-media">
+                                <img src="/images/p6.jpg" alt="">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
 </section>
 
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var myCarousel = document.getElementById('myCarousel');
-        var carouselItems = myCarousel.querySelectorAll('.carousel-item');
-        var totalItems = carouselItems.length;
-        var currentIndex = 0;
 
-        function updateCarousel() {
-            // Loại bỏ lớp active khỏi tất cả các phần tử
-            for (var i = 0; i < totalItems; i++) {
-                carouselItems[i].classList.remove('active');
-            }
-            // Thêm lớp active cho phần tử tiếp theo
-            carouselItems[currentIndex].classList.add('active');
-            // Tăng chỉ số currentIndex
-            currentIndex = (currentIndex + 1) % totalItems;
-        }
 
-        setInterval(updateCarousel, 3000); // 3000 milliseconds = 3 seconds, adjust as needed
-    });
-</script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-lBsrAphK9BFXN49KfxXkZpDMK4I8yc8d0fDbl8E7Uk2B+uj5AEg6cS6ksA0/wHW" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N" crossorigin="anonymous"></script>
 </body>
 </html>
