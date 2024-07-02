@@ -25,15 +25,6 @@ public class Product {
     @Column(name = "image")
     private String image;
 
-    @Column(name = "manufacturer")
-    private String manufacturer;
-
-    @Column(name = "metatitle")
-    private String metaTitle;
-
-    @Column(name = "moreimage")
-    private String moreImage;
-
     @Column(name = "nameproduct")
     private String nameProduct;
 

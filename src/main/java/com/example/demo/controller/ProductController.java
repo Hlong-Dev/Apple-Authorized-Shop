@@ -41,7 +41,7 @@ public class ProductController {
     @GetMapping("/category/{categoryId}")
     public String showProductsByCategory(@PathVariable Long categoryId,
                                          @RequestParam(defaultValue = "0") int page,
-                                         @RequestParam(defaultValue = "4") int size,
+                                         @RequestParam(defaultValue = "12") int size,
                                          Model model) {
         Pageable pageable = PageRequest.of(page, size);
         Page<Product> productPage = productService.getProductsByCategory(categoryId, pageable);
@@ -55,7 +55,7 @@ public class ProductController {
         return "/products/product-list";
     }
     @GetMapping
-    public String showProductList(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "4") int size, Model model) {
+    public String showProductList(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "12") int size, Model model) {
         Pageable pageable = PageRequest.of(page, size);
         Page<Product> productPage = productService.getAllProducts(pageable);
 
@@ -67,7 +67,7 @@ public class ProductController {
     }
     @GetMapping("/all")
     public String showAllProducts(@RequestParam(defaultValue = "0") int page,
-                                  @RequestParam(defaultValue = "4") int size,
+                                  @RequestParam(defaultValue = "12") int size,
                                   Model model) {
         Pageable pageable = PageRequest.of(page, size);
         Page<Product> productPage = productService.getAllProducts(pageable);
@@ -154,16 +154,22 @@ public class ProductController {
         Optional<Product> product = productService.getProductById(id);
         if (product.isPresent()) {
             model.addAttribute("product", product.get());
+
+            // Fetch all products and add to the model
+            List<Product> allProducts = productService.getAllProducts();
+            model.addAttribute("products", allProducts);
+
             return "/products/view-product";
         } else {
             throw new IllegalArgumentException("Invalid product Id:" + id);
         }
     }
 
+
     @GetMapping("/search")
     public String searchProducts(@RequestParam("keyword") String keyword,
                                  @RequestParam(defaultValue = "0") int page,
-                                 @RequestParam(defaultValue = "4") int size,
+                                 @RequestParam(defaultValue = "12") int size,
                                  Model model) {
         Pageable pageable = PageRequest.of(page, size);
         Page<Product> productPage = productService.searchProducts(keyword, pageable);

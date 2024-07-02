@@ -38,6 +38,420 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/7.2.0/introjs.min.css">
     <style>
+        h3.essential-card-header.typography-card-headline {
+            font-size: 28px;
+            line-height: 1.1428571429;
+            font-weight: 600;
+            letter-spacing: .007em;
+            font-family: SF Pro Display, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+        }        .item-container {
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      padding: 20px;
+                  }
+                  .card-set {
+                      display: flex;
+                      list-style-type: none;
+                      padding: 0;
+
+                      border-radius: 20px;
+                  }
+                  .gallery-item {
+                      margin: 10px;
+                      flex: 1;
+                  }
+                  .card {
+            position: relative;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+              border: 0px solid rgba(0, 0, 0, .125) !important;
+            border-radius: .25rem;
+        }
+                  .card {
+                      height: 469px;
+                      background-color: #fafafa;
+                      border-radius: 20px;
+                      text-align: center;
+                      padding: 20px;
+
+                  }
+                 .card img {
+                     object-fit: contain;
+
+            height: 373px !important;
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+        }
+                  .card-header {
+                      font-size: 24px;
+                      font-weight: bold;
+                      margin-bottom: 10px;
+                  }
+                  .card-description {
+                      font-size: 16px;
+                      margin-bottom: 20px;
+                  }
+                  .card-link {
+                      color: blue;
+                      text-decoration: none;
+                      font-size: 14px;
+                  }
+
+    </style>
+    <style>
+        .bg1 {
+    background-color: black;
+}
+.block1 {
+    height: 282px;
+    position: relative;
+    border: 1px solid #e6e6e6;
+}
+       .section-header {    display: flex;
+    justify-content: space-between;
+    grid-gap: 28px;
+    gap: 28px;
+    padding-bottom: 80px;
+    margin-top: -10px;
+}
+       .typography-section-headlin {
+       color:black;
+    font-size: 80px;
+    line-height: 1.05;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    font-family: SF Pro Display, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+    .section-header-copy-container {
+    font-size: 28px;
+    color: black;
+    line-height: 1.1428571429;
+    font-weight: 600;
+    letter-spacing: .007em;
+    font-family: SF Pro Display, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+        .item-slick1.slick-slide.slick-current.slick-active {
+    height: 303px;
+}
+        .social-icon img {
+    width: 50px;
+    filter: brightness(0);
+}
+        video {
+    height: 280px;
+}
+        .swiper-pagination.position-absolute.text-center.swiper-pagination-clickable.swiper-pagination-bullets.swiper-pagination-horizontal {
+    justify-content: flex-end;
+    display: flex;
+}
+
+    </style>
+    <style type="text/css">
+        .social-icon{z-index:1000}.social-icon img{width:50px}
+        .social-icon--zalo{position:fixed;left:15px;bottom:80px;display:block}
+        .social-icon--facebook{position:fixed;bottom:150px;left:15px;display:block}
+        .social-icon-mobile{display:none}
+        .social-icon-mobile img{width:25px}
+        .social-icon-mobile div{flex:1;display:flex;align-items:center;justify-content:center}.social-icon-mobile p{margin:0;margin-top:5px;font-size:10px;color:#fff}.social-icon-mobile a{display:flex;flex-direction:column;align-items:center;justify-content:center}.form-register{width:100%;max-width:100%;padding:0}@media (max-width:768px){.social-icon--facebook,.social-icon--zalo{display:none}.social-icon-mobile{display:flex;background-color:#00a3ff;height:60px;position:fixed;bottom:0;width:100%;z-index:1000}}
+    </style>
+    <style>
+        .typography-section-headline {
+        color:black;
+        font-size: 56px;
+        line-height: 1.0714285714;
+        font-weight: 600;
+        letter-spacing: -0.005em;
+        font-family: SF Pro Display, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+    }
+    </style>
+    <style>
+        .rs-shop-container {
+        margin: 0 22px;
+        min-height: 196px;
+        position: relative;
+        width: auto;
+    }
+        .rs-shop-header, .rs-shop-subheader {
+        display: inline;
+        font-family: SF Pro Display, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 48px;
+        font-weight: 600;
+        letter-spacing: -.003em;
+        line-height: 1.0834933333;
+    }
+        .rs-shop-header-section {
+        max-width: 640px;
+        padding: 80px 0 64px;
+    }
+        .dd-color-teal span.dd-highlight, .dd-color-teal svg.dd-glyph-svg {
+        color: #08827c;
+        fill: #08827c;
+    }
+        .seg-eduInd .rs-storehome .rs-shop-chatstore-section {
+        padding-top: 60px;
+
+    .rs-shop-container .rs-shop-chatstore-section {
+        inset-inline-end: 0;
+        position: absolute;
+    }
+    .row {
+        display: flex;
+        flex-flow: row wrap;
+        width: 100%;
+    }</style>
+    <style>
+        .section-ways-to-save {
+    background-color: rgb(255,255,255);
+    padding-block-start: 0;
+}
+
+.section-ways-to-save .ways-to-save-gallery {
+    --item-width: 372px;
+}
+.section {
+    overflow: hidden;
+    padding-top: 120px;
+}
+user agent stylesheet
+section {
+    display: block;
+    unicode-bidi: isolate;
+}
+        .section-content-responsive {
+    margin-inline: auto;
+    width: 87.5vw;
+    max-width: var(--section-max-width);
+}
+        :root {
+    --modal-button-size: 36px;
+    --gallery-card-width: 372px;
+    --gallery-card-height: 680px;
+    --section-header: 50px;
+    --nav-collective-height: calc(var(--r-globalnav-height, 0px) + var(--r-localnav-height, 0px) + var(--ribbon-height, 0px) + var(--r-localeswitcher-height, 0px) + var(--r-globalmessage-segment-height, 0px));
+    --section-max-width: 1260px;
+        .section-values .values-gallery {
+    --item-height: 372px;
+}
+.scroll-gallery:has(.paddlenav-disabled) {
+    padding-block-end: 0;
+}
+        .scroll-gallery {
+    --item-width: 406px;
+    --item-height: 479px;
+    --gallery-side-padding: max(calc(6.25vw - var(--modal-scrollbar-buffer, 0px)/2),calc(50vw - var(--section-max-width)/2 - var(--modal-scrollbar-buffer, 0px)/2));
+    width: 100%;
+    position: relative;
+    margin-block-start: var(--section-header);
+}
+        .scroll-gallery .scroll-container {
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-padding: calc(var(--gallery-side-padding));
+    scrollbar-width: none;
+}
+        .section-values .values-gallery {
+    --item-height: 372px;
+}
+.scroll-gallery {
+    --item-width: 406px;
+    --item-height: 479px;
+    --gallery-side-padding: max(calc(6.25vw - var(--modal-scrollbar-buffer, 0px)/2),calc(50vw - var(--section-max-width)/2 - var(--modal-scrollbar-buffer, 0px)/2));
+    width: 100%;
+    position: relative;
+    margin-block-start: var(--section-header);
+}
+        .scroll-gallery .item-container {
+    list-style: none;
+    margin: auto 0;
+    padding: 0;
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 20px;
+    gap: 20px;
+    width: -moz-fit-content;
+    width: fit-content;
+    padding-inline: var(--gallery-side-padding);
+}
+ol, ul {
+    margin-inline-start: 1.1764705882em;
+}
+        .scroll-gallery .gallery-item {
+    position: relative;
+    width: var(--item-width);
+    min-height: var(--item-height);
+    scroll-snap-align: start;
+}
+        .section-values .tile-content {
+    padding-block-end: 70px;
+}
+.tile-content {
+    --sk-tile-padding-large: 40px;
+    --sk-tile-padding-medium: 30px;
+    --sk-tile-padding-small: 20px;
+}
+@media only screen and (min-width: 1441px) {
+    .tile-content {
+        padding: var(--sk-tile-padding-xlarge);
+    }
+}
+.tile-content {
+    --sk-tile-padding-large: var(--sk-tile-padding, 60px 8.3333333333%);
+    --sk-tile-padding-xlarge: var(--sk-tile-padding, var(--sk-tile-padding-large));
+    --sk-tile-padding-medium: var(--sk-tile-padding, var(--sk-tile-padding-large));
+    --sk-tile-padding-small: var(--sk-tile-padding, var(--sk-tile-padding-large));
+    padding: var(--sk-tile-padding-large);
+}
+@media only screen and (min-width: 1441px) {
+    .tile-content {
+        padding: var(--sk-tile-padding-xlarge);
+    }
+}
+.tile-content {
+    --sk-tile-padding-large: var(--sk-tile-padding, 60px 8.3333333333%);
+    --sk-tile-padding-xlarge: var(--sk-tile-padding, var(--sk-tile-padding-large));
+    --sk-tile-padding-medium: var(--sk-tile-padding, var(--sk-tile-padding-large));
+    --sk-tile-padding-small: var(--sk-tile-padding, var(--sk-tile-padding-large));
+    padding: var(--sk-tile-padding-large);
+}
+user agent stylesheet
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+.tile-rounded {
+    --sk-tile-border-radius-large: 30px;
+    --sk-tile-border-radius-small: 20px;
+}
+.tile-rounded {
+    --sk-tile-border-radius-large: var(--sk-tile-border-radius, 18px);
+    --sk-tile-border-radius-xlarge: var(--sk-tile-border-radius, var(--sk-tile-border-radius-large));
+    --sk-tile-border-radius-medium: var(--sk-tile-border-radius, var(--sk-tile-border-radius-large));
+    --sk-tile-border-radius-small: var(--sk-tile-border-radius, var(--sk-tile-border-radius-large));
+    border-radius: var(--sk-tile-border-radius-large);
+}
+.tile {
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    --sk-tile-box-shadow: initial;
+       --sk-tile-background:rgb(255,255,255);
+
+    --sk-tile-button-background: rgba(210,210,215,0.64);
+    --sk-tile-button-background-hover: rgba(223,223,227,0.6976);
+    --sk-tile-button-background-active: rgba(193,193,198,0.6544);
+    --sk-tile-button-icon-color: rgba(0,0,0,0.56);
+    --sk-tile-button-icon-color-hover: rgba(0,0,0,0.64);
+    box-sizing: border-box;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    background: var(--sk-tile-background);
+    box-shadow: var(--sk-tile-box-shadow);
+}
+.tile-rounded {
+    --sk-tile-border-radius-large: var(--sk-tile-border-radius, 18px);
+    --sk-tile-border-radius-xlarge: var(--sk-tile-border-radius, var(--sk-tile-border-radius-large));
+    --sk-tile-border-radius-medium: var(--sk-tile-border-radius, var(--sk-tile-border-radius-large));
+    --sk-tile-border-radius-small: var(--sk-tile-border-radius, var(--sk-tile-border-radius-large));
+    border-radius: var(--sk-tile-border-radius-large);
+}
+.tile {
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    --sk-tile-box-shadow: initial;
+    --sk-tile-background: rgb(255,255,255);
+    --sk-tile-button-background: rgba(210,210,215,0.64);
+    --sk-tile-button-background-hover: rgba(223,223,227,0.6976);
+    --sk-tile-button-background-active: rgba(193,193,198,0.6544);
+    --sk-tile-button-icon-color: rgba(0,0,0,0.56);
+    --sk-tile-button-icon-color-hover: rgba(0,0,0,0.64);
+    box-sizing: border-box;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    background: var(--sk-tile-background);
+    box-shadow: var(--sk-tile-box-shadow);
+}
+        .typography-tile-headline {
+    font-size: 28px;
+    line-height: 1.1428571429;
+    font-weight: 600;
+    letter-spacing: .007em;
+    font-family: SF Pro Display, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+        .section-ways-to-save .tile .tile-media {
+    margin-block-start: auto;
+    padding-block-end: 30px;
+    align-self: center;
+}
+.section-ways-to-save .tile {
+    flex-direction: column;
+    display: flex;
+}
+        .tile.tile-discounts.tile-rounded {
+ width: 372px;
+        height: 479px;
+        border: 2px solid #ccc;
+                border-radius: 30px;
+}
+        .tile.tile-trade-in.tile-rounded {
+   width: 372px;
+        height: 479px;
+        border: 2px solid #ccc;
+                border-radius: 30px;
+
+}
+        .tile.tile-applecare.tile-rounded {
+   width: 372px;
+        height: 479px;
+        border: 2px solid #ccc;
+                border-radius: 30px;
+
+}
+.tile-content {
+    height: 400px;
+}
+li#secure {
+    border: 2px solid #ccc;
+    border-radius: 21px;
+}
+li#accessible {
+    border: 2px solid #ccc;
+    border-radius: 21px;
+}
+li#eco {
+    border: 2px solid #ccc;
+    border-radius: 21px;
+}
+        .section-ways-to-save .tile-content {
+    --sk-tile-padding-large: 30px;
+}
+        .section-ways-to-save .tile-discounts .tile-media {
+    align-self: flex-end !important;
+}
+            .typography-tile-headline {
+        color: black;
+        font-size: 28px;
+        line-height: 1.1428571429;
+        font-weight: 600;
+        letter-spacing: .007em;
+        font-family: SF Pro Display, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+        padding-bottom: 19px;
+    }
+    </style>
+    <style>
+        a.stext-104.cl4.hov-cl1.trans-04.js-name-b2.p-b-6 {
+    color: black;
+    font-weight: 700;
+    font-size: larger;
+}
         .autocomplete-list {
     list-style-type: none;
     padding: 0;
@@ -466,147 +880,128 @@ right: 20px;"></span>
 <footer class="bg3 p-t-75 p-b-32">
     <div class="container">
         <div class="row">
+            <!-- Categories Section -->
             <div class="col-sm-6 col-lg-3 p-b-50">
                 <h4 class="stext-301 cl0 p-b-30">
-                    Categories
+                    Danh Mục
                 </h4>
-
                 <ul>
                     <li class="p-b-10">
                         <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Women
+                            Macbook
                         </a>
                     </li>
-
                     <li class="p-b-10">
                         <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Men
+                            Phụ kiện
                         </a>
                     </li>
-
                     <li class="p-b-10">
                         <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Shoes
-                        </a>
-                    </li>
+                            Màn Hình
 
-                    <li class="p-b-10">
-                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Watches
                         </a>
                     </li>
                 </ul>
             </div>
 
+            <!-- Help Section -->
             <div class="col-sm-6 col-lg-3 p-b-50">
                 <h4 class="stext-301 cl0 p-b-30">
-                    Help
+                    Trợ Giúp
                 </h4>
-
                 <ul>
                     <li class="p-b-10">
                         <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Track Order
+                            Theo Dõi Đơn Hàng
                         </a>
                     </li>
-
                     <li class="p-b-10">
                         <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Returns
+                            Đổi Trả
                         </a>
                     </li>
-
                     <li class="p-b-10">
                         <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Shipping
+                            Vận Chuyển
                         </a>
                     </li>
-
                     <li class="p-b-10">
                         <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            FAQs
+                            Câu Hỏi Thường Gặp
                         </a>
                     </li>
                 </ul>
             </div>
 
+            <!-- Get in Touch Section -->
             <div class="col-sm-6 col-lg-3 p-b-50">
                 <h4 class="stext-301 cl0 p-b-30">
-                    GET IN TOUCH
+                    CÙNG CHÚNG TÔI THAY ĐỔI THẾ GIỚI
                 </h4>
-
                 <p class="stext-107 cl7 size-201">
-                    Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
+                    Sáng tạo phân biệt giữa người dẫn đầu và người theo sau.
                 </p>
-
                 <div class="p-t-27">
-                    <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                    <a href="https://www.facebook.com/profile.php?id=100022243757623" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
                         <i class="fa fa-facebook"></i>
                     </a>
-
-                    <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                    <a href="https://www.instagram.com/wuthlduing/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
                         <i class="fa fa-instagram"></i>
                     </a>
-
-                    <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                    <a href="https://www.pinterest.com/phianhpr3/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
                         <i class="fa fa-pinterest-p"></i>
                     </a>
                 </div>
             </div>
 
+            <!-- Newsletter Section -->
             <div class="col-sm-6 col-lg-3 p-b-50">
                 <h4 class="stext-301 cl0 p-b-30">
-                    Newsletter
+                    Bản Tin
                 </h4>
-
                 <form>
                     <div class="wrap-input1 w-full p-b-4">
-                        <input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@example.com">
+                        <input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="team13@gmail.com">
                         <div class="focus-input1 trans-04"></div>
                     </div>
-
                     <div class="p-t-18">
                         <button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
-                            Subscribe
+                            Đăng Ký
                         </button>
                     </div>
                 </form>
             </div>
         </div>
 
+        <!-- Payment Icons and Copyright -->
         <div class="p-t-40">
             <div class="flex-c-m flex-w p-b-18">
                 <a href="#" class="m-all-1">
                     <img src="images/icons/icon-pay-01.png" alt="ICON-PAY">
                 </a>
-
                 <a href="#" class="m-all-1">
                     <img src="images/icons/icon-pay-02.png" alt="ICON-PAY">
                 </a>
-
                 <a href="#" class="m-all-1">
                     <img src="images/icons/icon-pay-03.png" alt="ICON-PAY">
                 </a>
-
                 <a href="#" class="m-all-1">
                     <img src="images/icons/icon-pay-04.png" alt="ICON-PAY">
                 </a>
-
                 <a href="#" class="m-all-1">
                     <img src="images/icons/icon-pay-05.png" alt="ICON-PAY">
                 </a>
             </div>
-
             <p class="stext-107 cl6 txt-center">
                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> &amp; distributed by <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with
+                <i class="fa fa-heart-o" aria-hidden="true"></i> distributed by TEAM 13
                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-
             </p>
         </div>
     </div>
 </footer>
-
 
 <!-- Back to top -->
 <div class="btn-back-to-top" id="myBtn">
