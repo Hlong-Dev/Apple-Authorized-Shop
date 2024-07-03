@@ -3,42 +3,20 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
 <head>
-    <title th:text="${title} ?: 'Place Your Order'">Place Your Order</title>
-    <link rel="icon" type="image/png" href="images/icons/favicon.png"/>
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="vendor/MagnificPopup/magnific-popup.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="css/util.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <title th:text="${title} ?: 'Thanh Toán Đơn Hàng'">Thanh Toán Đơn Hàng</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
 <section layout:fragment="content" class="container mt-3">
+    <div style="height: 80px;"></div>
     <div class="container">
         <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
             <a href="/" class="stext-109 cl8 hov-cl1 trans-04">
-                Home
+                Trang Chủ
+                <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+            </a>
+            <a href="/cart" class="stext-109 cl8 hov-cl1 trans-04">
+                Giỏ Hàng Của Bạn
                 <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
             </a>
             <span class="stext-109 cl4">
@@ -46,9 +24,9 @@
             </span>
         </div>
     </div>
-    <div class="row bg-white rounded p-4 py-5 shadow-sm border border-dark">
+    <div  class="row bg-white rounded p-4 py-5 shadow-sm border border-dark">
 
-        <div class="col-md-6">
+        <div  data-intro="Xem lại thật kĩ coi áp mã giảm giá chưa nè." data-step="2" class="col-md-6">
             <div class="text-uppercase font-weight-bold bg-light rounded-pill px-md-4 py-md-3">
                 Thông Tin Nhận Hàng
             </div>
@@ -79,7 +57,7 @@
             <div class="p-md-4">
                 <form th:action="@{/order/submit}" method="post">
                     <div class="form-group mb-3">
-                        <input type="text" id="customerName" name="customerName" th:value="${user.username}" class="form-control" placeholder="Họ và tên" required>
+                        <input  type="text" id="customerName" name="customerName" th:value="${user.username}" class="form-control" placeholder="Họ và tên" required>
                     </div>
 <!--                    <div class="form-group mb-3">-->
 <!--                        <input type="text" id="customerId" name="customerName" th:value="${user.id}" class="" placeholder="userId" required>-->
@@ -88,34 +66,43 @@
                         <input type="text" id="phoneCustomer" name="phoneCustomer" th:value="${user.phone}"  class="form-control" placeholder="Số điện thoại" required>
                     </div>
                     <div class="form-group mb-3">
-                        <input type="text" id="addressCustomer" name="addressCustomer" th:value="${user.address}" class="form-control" placeholder="Địa chỉ" required>
+                        <input data-intro="Điền đúng địa chỉ của bạn nhá !!" type="text" id="addressCustomer" name="addressCustomer" th:value="${user.address}" class="form-control" placeholder="Địa chỉ" required>
                     </div>
                     <div class="form-group mb-3">
-                        <input type="email" id="emailCustomer" name="emailCustomer" th:value="${user.email}" class="form-control" placeholder="Email của bạn" required>
+                        <input  type="email" id="emailCustomer" name="emailCustomer" th:value="${user.email}" class="form-control" placeholder="Email của bạn" required>
                     </div>
                     <div class="form-group mb-3">
-                        <input type="text" id="descriptionOrder" name="descriptionOrder" class="form-control" placeholder="Ghi chú cho cửa hàng">
+                        <input data-intro="Có ghi chú gì thì đền vào đây nha!" type="text" id="descriptionOrder" name="descriptionOrder" class="form-control" placeholder="Ghi chú cho cửa hàng">
                     </div>
-                    <div class="form-group mb-3">
+                    <div data-intro="Có 3 phương thức thanh toán cho bạn lựa chọn đấy nhé!" data-step="1" class="form-group mb-3">
                         <div class="form-check">
                             <input type="radio" id="cod" name="paymentMethod" class="form-check-input" value="cod">
-                            <label for="cod" class="form-check-label">Thanh toán khi nhận hàng (COD)</label>
+                            <label for="cod" class="form-check-label">
+                                <i class="fas fa-truck"></i> Thanh toán khi nhận hàng (COD)
+                            </label>
                         </div>
                         <div class="form-check">
                             <input type="radio" id="momo" name="paymentMethod" class="form-check-input" value="momo">
-                            <label for="momo" class="form-check-label">Thanh toán qua MOMO</label>
+                            <label for="momo" class="form-check-label">
+                                <img src="/images/momo.png" alt="MOMO Icon" style="width: 20px; height: 20px; margin-right: 5px;"> Thanh toán qua MOMO
+                            </label>
                         </div>
                         <div class="form-check">
                             <input type="radio" id="vnpay" name="paymentMethod" class="form-check-input" value="vnpay">
-                            <label for="vnpay" class="form-check-label">Thanh toán qua VNPAY</label>
+                            <label for="vnpay" class="form-check-label">
+                                <img src="/images/vnpay.png" alt="VNPAY Icon" style="width: 20px; height: 20px; margin-right: 5px;"> Thanh toán qua VNPAY
+                            </label>
                         </div>
                     </div>
+
                     <button type="submit" class="btn btn-primary" id="submitButton">Thanh Toán</button>
                 </form>
             </div>
         </div>
     </div>
+    <div style="height: 80px;"></div>
 </section>
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const codRadio = document.getElementById("cod");

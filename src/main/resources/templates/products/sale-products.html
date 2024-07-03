@@ -4,7 +4,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
 <head>
-    <title th:text="${title} ?: 'Cửa Hàng'">Sản Phẩm</title>
+    <title th:text="${title} ?: 'Sale Products'">Giả Giá Sốc</title>
 </head>
 <body>
 <section layout:fragment="content">
@@ -48,9 +48,8 @@
                 <!-- Filter -->
                 <!-- (Filter content omitted for brevity) -->
             </div>
-
             <div class="row">
-                <div th:each="product : ${productPage.content}" class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item">
+                <div th:each="product : ${saleProducts}" class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item">
                     <div class="block2">
                         <div class="block2-pic hov-img0">
                             <img th:src="@{|${product.imagePath}|}" alt="IMG-PRODUCT" class="img-thumbnail" style="width: 100%; height: auto;">
@@ -69,11 +68,9 @@
                                 <a th:href="@{/products/view/{id}(id=${product.id})}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                                     <span th:text="${product.nameProduct}">Product Name</span>
                                 </a>
-                                <span class="stext-105 cl3" th:if="${product.salePrice != null}" style="text-decoration: line-through;"
+                                <span class="stext-105 cl3" style="text-decoration: line-through;"
                                       th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')} + ' VND'">Price</span>
-                                <span class="stext-105 cl3" th:if="${product.salePrice == null}"
-                                      th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')} + ' VND'">Price</span>
-                                <span class="stext-106 cl3" th:if="${product.salePrice != null}"
+                                <span class="stext-106 cl3"
                                       th:text="${#numbers.formatDecimal(product.salePrice, 0, 'COMMA', 0, 'POINT')} + ' VND'">Sale Price</span>
                             </div>
                             <div class="block2-txt-child2 flex-r p-t-3">
@@ -85,21 +82,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Pagination -->
-            <div class="flex-c-m flex-w w-full p-t-38">
-                <a th:if="${productPage.hasPrevious()}" th:href="@{/products(page=${productPage.number - 1}, size=${productPage.size})}" class="flex-c-m how-pagination1 trans-04 m-all-7">
-                    Trước
-                </a>
-                <div th:each="i : ${#numbers.sequence(1, productPage.totalPages)}">
-                    <a th:href="@{/products(page=${i - 1}, size=${productPage.size})}" class="flex-c-m how-pagination1 trans-04 m-all-7" th:classappend="${i == productPage.number + 1} ? 'active'">
-                        <span th:text="${i}">1</span>
-                    </a>
-                </div>
-                <a th:if="${productPage.hasNext()}" th:href="@{/products(page=${productPage.number + 1}, size=${productPage.size})}" class="flex-c-m how-pagination1 trans-04 m-all-7">
-                    Tiếp
-                </a>
             </div>
         </div>
     </div>

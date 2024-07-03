@@ -55,10 +55,9 @@ public class ProductService {
 
 //        existingProduct.setStatusProduct(product.getStatusProduct());
 
-        existingProduct.setManufacturer(product.getManufacturer());
-        existingProduct.setMetaTitle(product.getMetaTitle());
+
         existingProduct.setImage(product.getImage());
-        existingProduct.setMoreImage(product.getMoreImage());
+
 
         existingProduct.setDescription(product.getDescription());
         existingProduct.setCategory(product.getCategory());
