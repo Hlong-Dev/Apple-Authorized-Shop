@@ -102,10 +102,10 @@
                                     <li><a href="other_charts.html">Other Charts</a></li>
                                 </ul>
                             </li>
-                            <li><a><i class="fa fa-clone"></i>Quản Lý Layout <span class="fa fa-chevron-down"></span></a>
+                            <li><a><i class="fa fa-clone"></i>Quản Lý Mã Giảm Giá <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="fixed_sidebar.html">Fixed Sidebar</a></li>
-                                    <li><a href="fixed_footer.html">Fixed Footer</a></li>
+                                    <li><a href="/discount-codes">Mã Giảm Giá</a></li>
+                                    <li><a href="/discount-codes/add">Thêm Mã Giảm Giá Mới</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -259,7 +259,73 @@
 <!-- NProgress -->
 <script src="/vendors/nprogress/nprogress.js"></script>
 <!-- Chart.js -->
-<script src="/vendors/Chart.js/dist/Chart.min.js"></script>
+<script>
+    // Lấy dữ liệu từ model được truyền vào từ controller
+   var days = [[${days}]];
+   var counts = [[${counts}]];
+
+   // Cấu hình biểu đồ
+   var ctx = document.getElementById('accessLogChart').getContext('2d');
+   var chart = new Chart(ctx, {
+       type: 'line', // Change chart type to 'line'
+       data: {
+           labels: days.map(day => `Ngày ${day}`),
+           datasets: [{
+               label: 'Số lượt truy cập trong tháng',
+               data: counts,
+               backgroundColor: 'rgba(3, 88, 106, 0.60)', // Màu nền của các vùng
+               borderColor: 'rgba(3, 88, 106, 1)', // Màu đường viền
+               borderWidth: 2,
+               fill: true, // Enable fill to create area chart
+               tension: 0.4 // Add tension for smooth curves
+           }]
+       },
+       options: {
+           plugins: {
+               legend: {
+                   display: true,
+                   labels: {
+                       font: {
+                           family: 'Arial', // Thay đổi font chữ
+                           size: 14
+                       }
+                   }
+               }
+           },
+           scales: {
+               y: {
+                   beginAtZero: true,
+                   title: {
+                       display: true,
+                       text: 'Số lượt truy cập',
+                       font: {
+                           size: 16
+                       }
+                   }
+               },
+               x: {
+                   title: {
+                       display: true,
+                       text: 'Ngày trong tháng',
+                       font: {
+                           size: 16
+                       }
+                   },
+                   ticks: {
+                       font: {
+                           size: 14
+                       }
+                   }
+               }
+           },
+           animation: {
+               duration: 2000, // Độ dài của hiệu ứng
+               easing: 'easeInOutQuart' // Kiểu hiệu ứng
+           }
+       }
+   });
+
+</script>
 <!-- gauge.js -->
 <script src="/vendors/gauge.js/dist/gauge.min.js"></script>
 <!-- bootstrap-progressbar -->

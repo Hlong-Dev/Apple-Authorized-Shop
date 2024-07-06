@@ -31,6 +31,7 @@
   <!-- Custom Theme Style -->
   <link href="/build/css/custom.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-..." crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
   .count.green {
     font-size: 40px;
@@ -87,7 +88,7 @@
 
             <div class="row x_title">
               <div class="col-md-6">
-                <h3>Doanh Thu Trong Năm 2024</h3>
+                <h3>THỐNG KÊ SỐ LƯỢT TRUY CẬP WEBSITE</h3>
               </div>
               <div class="col-md-6">
                 <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
@@ -98,7 +99,7 @@
             </div>
 
             <div class="col-md-9 col-sm-9 col-xs-12">
-              <div id="chart_plot_01" class="demo-placeholder"></div>
+              <canvas id="accessLogChart" width="1210" height="280"></canvas>
             </div>
             <div class="col-md-3 col-sm-3 col-xs-12 bg-white">
               <div class="x_title">

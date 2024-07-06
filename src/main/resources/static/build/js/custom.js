@@ -1985,22 +1985,22 @@ if (typeof NProgress != 'undefined') {
 	   
 		
 		function init_charts() {
-			
+
 				console.log('run_charts  typeof [' + typeof (Chart) + ']');
-			
+
 				if( typeof (Chart) === 'undefined'){ return; }
-				
+
 				console.log('init_charts');
-			
-				
+
+
 				Chart.defaults.global.legend = {
 					enabled: false
 				};
-				
-				
+
+
 
 			if ($('#canvas_line').length ){
-				
+
 				var canvas_line_00 = new Chart(document.getElementById("canvas_line"), {
 				  type: 'line',
 				  data: {
@@ -2028,12 +2028,12 @@ if (typeof NProgress != 'undefined') {
 					}]
 				  },
 				});
-				
+
 			}
 
-			
+
 			if ($('#canvas_line1').length ){
-			
+
 				var canvas_line_01 = new Chart(document.getElementById("canvas_line1"), {
 				  type: 'line',
 				  data: {
@@ -2061,12 +2061,12 @@ if (typeof NProgress != 'undefined') {
 					}]
 				  },
 				});
-			
+
 			}
-				
-				
-			if ($('#canvas_line2').length ){		
-			
+
+
+			if ($('#canvas_line2').length ){
+
 				var canvas_line_02 = new Chart(document.getElementById("canvas_line2"), {
 				  type: 'line',
 				  data: {
@@ -2095,11 +2095,11 @@ if (typeof NProgress != 'undefined') {
 				  },
 				});
 
-			}	
-			
-			
+			}
+
+
 			if ($('#canvas_line3').length ){
-			
+
 				var canvas_line_03 = new Chart(document.getElementById("canvas_line3"), {
 				  type: 'line',
 				  data: {
@@ -2128,11 +2128,11 @@ if (typeof NProgress != 'undefined') {
 				  },
 				});
 
-			}	
-			
-			
+			}
+
+
 			if ($('#canvas_line4').length ){
-				
+
 				var canvas_line_04 = new Chart(document.getElementById("canvas_line4"), {
 				  type: 'line',
 				  data: {
@@ -2159,15 +2159,15 @@ if (typeof NProgress != 'undefined') {
 					  data: [82, 23, 66, 9, 99, 4, 2]
 					}]
 				  },
-				});		
-				
+				});
+
 			}
-			
-				
+
+
 			  // Line chart
-			 
-			if ($('#lineChart').length ){	
-			
+
+			if ($('#lineChart').length ){
+
 			  var ctx = document.getElementById("lineChart");
 			  var lineChart = new Chart(ctx, {
 				type: 'line',
@@ -2196,13 +2196,13 @@ if (typeof NProgress != 'undefined') {
 				  }]
 				},
 			  });
-			
+
 			}
-				
+
 			  // Bar chart
-			  
-			if ($('#mybarChart').length ){ 
-			  
+
+			if ($('#mybarChart').length ){
+
 			  var ctx = document.getElementById("mybarChart");
 			  var mybarChart = new Chart(ctx, {
 				type: 'bar',
@@ -2229,14 +2229,14 @@ if (typeof NProgress != 'undefined') {
 				  }
 				}
 			  });
-			  
-			} 
-			  
+
+			}
+
 
 			  // Doughnut chart
-			  
-			if ($('#canvasDoughnut').length ){ 
-			  
+
+			if ($('#canvasDoughnut').length ){
+
 			  var ctx = document.getElementById("canvasDoughnut");
 			  var data = {
 				labels: [
@@ -2271,13 +2271,13 @@ if (typeof NProgress != 'undefined') {
 				tooltipFillColor: "rgba(51, 51, 51, 0.55)",
 				data: data
 			  });
-			 
-			} 
+
+			}
 
 			  // Radar chart
-			  
-			if ($('#canvasRadar').length ){ 
-			  
+
+			if ($('#canvasRadar').length ){
+
 			  var ctx = document.getElementById("canvasRadar");
 			  var data = {
 				labels: ["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"],
@@ -2306,13 +2306,13 @@ if (typeof NProgress != 'undefined') {
 				type: 'radar',
 				data: data,
 			  });
-			
+
 			}
-			
-			
+
+
 			  // Pie chart
 			  if ($('#pieChart').length ){
-				  
+
 				  var ctx = document.getElementById("pieChart");
 				  var data = {
 					datasets: [{
@@ -2342,10 +2342,10 @@ if (typeof NProgress != 'undefined') {
 					  legend: false
 					}
 				  });
-				  
+
 			  }
-			
-			  
+
+
 			  // PolarArea chart
 
 			if ($('#polarArea').length ){
@@ -2383,7 +2383,7 @@ if (typeof NProgress != 'undefined') {
 				  }
 				}
 				});
-			
+
 			}
 		}
 
