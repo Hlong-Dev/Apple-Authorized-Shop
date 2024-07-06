@@ -8,6 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -29,12 +31,21 @@ public class AccessLogService {
         Query query = entityManager.createQuery("SELECT COUNT(a) FROM AccessLog a");
         return (long) query.getSingleResult();
     }
-    public List<Object[]> getAccessLogStats() {
+    public List<Object[]> getAccessLogStatsByMonthYear() {
         Query query = entityManager.createQuery(
-                "SELECT DATE(a.timestamp), COUNT(a) " +
+                "SELECT DAY(a.timestamp), COUNT(a) " +
                         "FROM AccessLog a " +
-                        "GROUP BY DATE(a.timestamp) " +
-                        "ORDER BY DATE(a.timestamp)");
+                        "WHERE YEAR(a.timestamp) = :year AND MONTH(a.timestamp) = :month " +
+                        "GROUP BY DAY(a.timestamp) " +
+                        "ORDER BY DAY(a.timestamp)");
+
+        // Thiết lập các tham số year và month
+        int year = LocalDate.now().getYear(); // Năm hiện tại
+        int month = LocalDate.now().getMonthValue(); // Tháng hiện tại
+        query.setParameter("year", year);
+        query.setParameter("month", month);
+
         return query.getResultList();
     }
+
 }

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layoutAdmin}">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Gentelella Alela! | </title>
+
+    <!-- Bootstrap -->
+    <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+
+    <!-- bootstrap-progressbar -->
+    <link href="/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+    <!-- bootstrap-daterangepicker -->
+    <link href="/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="/build/css/custom.min.css" rel="stylesheet">
+</head>
+
+<body>
+<section layout:fragment="content" class="container mt-5">
+    <div class="right_col" role="main">
+        <h1>Add Discount Code</h1>
+        <form th:action="@{/discount-codes}" th:object="${newDiscountCode}" method="post" class="needs-validation" novalidate>
+            <div class="mb-3">
+                <label for="code" class="form-label">Code:</label>
+                <input type="text" th:field="*{code}" class="form-control" id="code" required>
+                <div class="text-danger" th:if="${#fields.hasErrors('code')}" th:errors="*{code}"></div>
+            </div>
+            <div class="mb-3">
+                <label for="discountAmount" class="form-label">Discount Amount:</label>
+                <input type="text" th:field="*{discountAmount}" class="form-control" id="discountAmount" required>
+                <div class="text-danger" th:if="${#fields.hasErrors('discountAmount')}" th:errors="*{discountAmount}"></div>
+            </div>
+            <div class="mb-3">
+                <label for="isPercentage" class="form-label">Is Percentage:</label>
+                <input type="checkbox" th:field="*{isPercentage}" class="form-check-input" id="isPercentage">
+                <div class="text-danger" th:if="${#fields.hasErrors('isPercentage')}" th:errors="*{isPercentage}"></div>
+            </div>
+            <div class="mb-3">
+                <label for="validFrom" class="form-label">Valid From:</label>
+                <input type="datetime-local" th:field="*{validFrom}" class="form-control" id="validFrom" required>
+                <div class="text-danger" th:if="${#fields.hasErrors('validFrom')}" th:errors="*{validFrom}"></div>
+            </div>
+            <div class="mb-3">
+                <label for="validUntil" class="form-label">Valid Until:</label>
+                <input type="datetime-local" th:field="*{validUntil}" class="form-control" id="validUntil" required>
+                <div class="text-danger" th:if="${#fields.hasErrors('validUntil')}" th:errors="*{validUntil}"></div>
+            </div>
+            <div class="mb-3">
+                <label for="usageLimit" class="form-label">Usage Limit:</label>
+                <input type="text" th:field="*{usageLimit}" class="form-control" id="usageLimit" required>
+                <div class="text-danger" th:if="${#fields.hasErrors('usageLimit')}" th:errors="*{usageLimit}"></div>
+            </div>
+            <div class="mb-3">
+                <label for="usedCount" class="form-label">Used Count:</label>
+                <input type="text" th:field="*{usedCount}" class="form-control" id="usedCount">
+                <div class="text-danger" th:if="${#fields.hasErrors('usedCount')}" th:errors="*{usedCount}"></div>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Discount Code</button>
+            <a th:href="@{/discount-codes}" class="btn btn-link">Cancel</a>
+        </form>
+    </div>
+</section>
+
+</body>
+</html>

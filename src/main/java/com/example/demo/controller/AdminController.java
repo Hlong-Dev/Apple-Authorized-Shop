@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,12 +42,21 @@ public class AdminController {
 
     @GetMapping("/home")
     public String adminHome(Model model) {
+        // Các dữ liệu khác như trước
         long productCount = productService.getProductCount();
         long orderCount = orderService.getOrderCount();
         long userCount = userService.getUserCount();
         double totalRevenue = orderService.getTotalRevenue();
         long accessLogCount = accessLogService.getAccessLogCount(); // Get access log count
-        List<Object[]> accessLogStats = accessLogService.getAccessLogStats(); // Get access log stats
+        List<Object[]> accessLogStats = accessLogService.getAccessLogStatsByMonthYear(); // Get access log stats by month and year
+
+        // Chuyển đổi dữ liệu accessLogStats sang định dạng JSON để sử dụng trong JavaScript
+        List<Integer> days = new ArrayList<>();
+        List<Long> counts = new ArrayList<>();
+        for (Object[] stat : accessLogStats) {
+            days.add((Integer) stat[0]); // Lấy ngày từ kết quả truy vấn
+            counts.add((Long) stat[1]); // Lấy số lượng lượt truy cập từ kết quả truy vấn
+        }
 
         model.addAttribute("totalRevenue", totalRevenue);
         model.addAttribute("productCount", productCount);
@@ -54,9 +64,12 @@ public class AdminController {
         model.addAttribute("userCount", userCount);
         model.addAttribute("accessLogCount", accessLogCount); // Add access log count to model
         model.addAttribute("accessLogStats", accessLogStats); // Add access log stats to model
+        model.addAttribute("days", days); // Thêm danh sách các ngày vào model
+        model.addAttribute("counts", counts); // Thêm danh sách số lượng lượt truy cập vào model
 
         return "/admin/home"; // Điều hướng đến trang home của admin
     }
+
 
     @GetMapping
     public String showProductList(Model model) {
