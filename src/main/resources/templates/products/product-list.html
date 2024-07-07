@@ -5,10 +5,64 @@
       layout:decorate="~{layout}">
 <head>
     <title th:text="${title} ?: 'Cửa Hàng'">Sản Phẩm</title>
+    <style>
+        .section-slide {
+    position: relative;
+}
+
+.item-slick1 {
+    position: relative;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+.overlay {
+    position: absolute;
+    top: 71%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+}
+
+.center-img {
+    width: 200px; /* Bạn có thể thay đổi kích thước theo ý muốn */
+    display: block;
+    margin: 0 auto;
+}
+
+.subhead {
+    max-width: 600px;
+    margin-top: 10px;
+    font-size: 18px;
+    color: white;
+}
+
+    </style>
 </head>
 <body>
 <section layout:fragment="content">
     <div style="height: 90px;"></div>
+    <section class="section-slide">
+        <div class="wrap-slick1">
+            <div class="slick1">
+                <div class="item-slick1">
+                    <video width="100%" height="auto" autoplay loop muted playsinline>
+                        <source src="https://i.imgur.com/vG66ZXD.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="overlay">
+                        <img src="/images/wwdc.png" class="center-img">
+                        <p class="subhead">Xin giới thiệu Apple&nbsp;Intelligence, iOS&nbsp;18, iPadOS&nbsp;18, macOS&nbsp;Sequoia và watchOS&nbsp;11.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <div class="bg0 m-t-23 p-b-140">
         <div class="container">
