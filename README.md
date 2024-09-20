@@ -7,11 +7,26 @@ Prerequisites
 Installation
 Configuration
 Usage
+Access the Application
+Login Credentials
+Navigate the Dashboard
 Payment Integration
 Momo Payment Gateway
+Setup
+Payment Process
 VNPAY Payment Gateway
+Setup
+Payment Process
 Testing
+Unit Tests
+API Testing
+End-to-End Testing
 Contributing
+Fork the Repository
+Create a Feature Branch
+Commit Your Changes
+Push to the Branch
+Submit a Pull Request
 License
 Contact Information
 Features
@@ -31,27 +46,22 @@ MySQL Database: Version 5.7 or higher.
 Spring Boot: Version 2.5.0 or higher.
 Internet Connection: Required for payment gateway integrations.
 Installation
-Clone the Repository
-
+1. Clone the Repository
 bash
 Copy code
-git clone https://github.com/yourusername/apple-authorized-app.git
-Navigate to the Project Directory
-
+git clone https://github.com/Hlong-Dev/Apple-Authorized-Shop.git
+2. Navigate to the Project Directory
 bash
 Copy code
 cd apple-authorized-app
-Build the Project
-
+3. Build the Project
 bash
 Copy code
 mvn clean install
-Set Up the Database
-
+4. Set Up the Database
 Create a new MySQL database named apple_authorized_db.
 Update the database configuration in src/main/resources/application.properties.
-Run the Application
-
+5. Run the Application
 bash
 Copy code
 mvn spring-boot:run
@@ -84,32 +94,27 @@ vnpay.hashSecret=your_hash_secret
 vnpay.apiUrl=https://sandbox.vnpayment.vn/paymentv2/vpcpay.html
 Usage
 Access the Application
-
 Open your web browser and navigate to http://localhost:8080.
 
 Login Credentials
-
 Use the default admin credentials to log in:
 
-makefile
-Copy code
 Username: admin
 Password: admin123
 Navigate the Dashboard
-
-Manage products, inventory, and orders.
-View and manage customer information.
-Access reports and analytics.
+Manage Products: Add, edit, or remove Apple products.
+Inventory Management: Monitor and update stock levels.
+Order Processing: View and process customer orders.
+Customer Management: Access customer profiles and interaction history.
+Reports and Analytics: Generate and view sales reports.
 Payment Integration
 Momo Payment Gateway
 The application integrates with Momo to process online payments securely.
 
 Setup
-
 Ensure Momo API credentials are correctly configured in application.properties.
 Test the payment flow using Momo's sandbox environment before going live.
 Payment Process
-
 Customer selects Momo as the payment method.
 Application redirects to Momo's payment gateway.
 Customer completes the payment on Momo's platform.
@@ -118,55 +123,45 @@ VNPAY Payment Gateway
 VNPAY is integrated to provide an additional payment option.
 
 Setup
-
 Configure VNPAY API credentials in application.properties.
 Use VNPAY's sandbox for testing the integration.
 Payment Process
-
 Customer selects VNPAY as the payment method.
 Application generates a payment URL and redirects the customer to VNPAY.
 Customer completes the payment on VNPAY's platform.
 VNPAY redirects back with transaction details and status.
 Testing
 Unit Tests
-
 Run unit tests to ensure code quality:
 
 bash
 Copy code
 mvn test
 API Testing
-
 Use tools like Postman to test API endpoints and verify responses.
 
 End-to-End Testing
-
 Manually test the application flow, including user interactions and payment processes.
 
 Contributing
 Contributions are welcome! Please follow these steps:
 
 Fork the Repository
-
 Click on the 'Fork' button on the repository page to create a copy under your GitHub account.
 
 Create a Feature Branch
-
 bash
 Copy code
 git checkout -b feature/YourFeature
 Commit Your Changes
-
 bash
 Copy code
 git commit -m 'Add your feature'
 Push to the Branch
-
 bash
 Copy code
 git push origin feature/YourFeature
 Submit a Pull Request
-
 Open a pull request to merge your feature branch into the main branch.
 
 License
@@ -176,10 +171,3 @@ Contact Information
 Author: Ngo Duy Hoang Long
 Email: hoanglong.programmer@gmail.com
 GitHub: hlong-dev
-Thank you for using the Apple Authorized Application. If you have any questions or need further assistance, please feel free to contact us.
-
-
-
-
-
-
